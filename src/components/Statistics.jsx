@@ -10,7 +10,7 @@ const Statistics = () => {
   return (
     <ScrollTrigger onEnter={() => setCounterOn(true)} onExit={() => setCounterOn(false)}>
         <div id='statistics' className='py-12'>
-            <div className='max-w-[1280px] mx-auto flex justify-around'>
+            <div className='max-w-[1280px] mx-auto flex flex-col gap-12 lg:flex-row lg:justify-evenly'>
                 <div className='flex flex-col items-center gap-4'>
                     <IoCloudDownloadOutline size={70} className='stroke-gray-400' />
                     <p className='text-5xl font-bold'>

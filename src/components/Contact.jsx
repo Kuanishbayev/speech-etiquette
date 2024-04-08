@@ -7,11 +7,11 @@ import SendIcon from '@mui/icons-material/Send';
 const Contact = () => {
   return (
     <div id='contact' className='bg-cyan-700'>
-        <div className='max-w-[1280px] h-full mx-auto flex justify-center gap-12 py-12'>
-            <div className='flex flex-col gap-20'>
+        <div className='max-w-[1280px] h-full mx-auto flex flex-col items-center lg:flex-row justify-center gap-12 py-12 px-4 lg:px-0'>
+            <div className='flex flex-col items-center gap-6 lg:w-1/2'>
                 <div>
-                    <h1 className='font-bold text-4xl text-white'>Contact Us</h1>
-                    <p className='pt-6 text-cyan-100 w-96'>Lorem, ipsum dolor sit amet consectetur adipisicing elit. Cum, commodi temporibus vitae maxime ducimus laboriosam non vel fugit sequi tempora!</p>
+                    <h1 className='text-center font-bold text-4xl text-white'>Contact Us</h1>
+                    <p className='text-center pt-6 text-cyan-100'>Lorem, ipsum dolor sit amet consectetur adipisicing elit. Cum, commodi temporibus vitae maxime ducimus laboriosam non vel fugit sequi tempora!</p>
                 </div>
             <ul className='flex flex-col gap-4'>
                 <li className='flex items-center gap-2 text-cyan-100'><ImPhone className='fill-teal-300' /><span>+ (123) 456 7890</span></li>
@@ -19,7 +19,7 @@ const Contact = () => {
                 <li className='flex items-center gap-2 text-cyan-100'><FaLocationDot className='fill-teal-300' /><span>11, Street 342, Abcd Fgh</span></li>
             </ul>
             </div>
-            <form className='flex flex-col bg-white p-10 gap-4 text-gray-600 rounded-lg'>
+            <form className='flex flex-col bg-white p-10 gap-4 text-gray-600 rounded-lg max-w-lg'>
                 <div>
                     <label htmlFor="name">Your name</label>
                     <input className='mt-2 ring-1 ring-gray-300 px-4 py-2 outline-none rounded-md w-full p-2 focus:ring-2 focus:ring-teal-300' placeholder='Your name' type="text" id='name' required />
