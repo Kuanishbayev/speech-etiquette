@@ -19,20 +19,20 @@ const Contact = () => {
                 <li className='flex items-center gap-2 text-cyan-100'><FaLocationDot className='fill-teal-300' /><span>11, Street 342, Abcd Fgh</span></li>
             </ul>
             </div>
-            <form className='flex flex-col bg-white p-10 gap-4 text-gray-600 rounded-lg max-w-lg'>
+            <form action='https://formsubmit.co/kuanishbayevyernazar@gmail.com' method='post' className='flex flex-col bg-white p-10 gap-4 text-gray-600 rounded-lg max-w-lg'>
                 <div>
                     <label htmlFor="name">Your name</label>
-                    <input className='mt-2 ring-1 ring-gray-300 px-4 py-2 outline-none rounded-md w-full p-2 focus:ring-2 focus:ring-teal-300' placeholder='Your name' type="text" id='name' required />
+                    <input name='Name' className='mt-2 ring-1 ring-gray-300 px-4 py-2 outline-none rounded-md w-full p-2 focus:ring-2 focus:ring-teal-300' placeholder='Your name' type="text" id='name' required />
                 </div>
                 <div>
                     <label htmlFor="email">Email Adress</label>
-                    <input className='mt-2 ring-1 ring-gray-300 px-4 py-2 outline-none rounded-md w-full p-2 focus:ring-2 focus:ring-teal-300' placeholder='Email Adress' type="email" id='email' required />
+                    <input name='Email' className='mt-2 ring-1 ring-gray-300 px-4 py-2 outline-none rounded-md w-full p-2 focus:ring-2 focus:ring-teal-300' placeholder='Email Adress' type="email" id='email' required />
                 </div>
                 <div>
                     <label htmlFor="message">Message</label>
-                    <textarea className='mt-2 ring-1 ring-gray-300 px-4 py-2 outline-none rounded-md w-full p-2 focus:ring-2 focus:ring-teal-300' placeholder='Type your message here' id="message" cols="30" rows="5" required></textarea>
+                    <textarea name='Message' className='mt-2 ring-1 ring-gray-300 px-4 py-2 outline-none rounded-md w-full p-2 focus:ring-2 focus:ring-teal-300' placeholder='Type your message here' id="message" cols="30" rows="5" required></textarea>
                 </div>
-                <Button className='bg-cyan-700 self-end' variant="contained" endIcon={<SendIcon />}>Send</Button>
+                <Button type='submit' className='bg-cyan-700 self-end' variant="contained" endIcon={<SendIcon />}>Send</Button>
             </form>
         </div>
     </div>
