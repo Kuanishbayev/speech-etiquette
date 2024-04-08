@@ -1,5 +1,6 @@
 import AboutMe from "./components/AboutMe"
 import Contact from "./components/Contact"
+import Footer from "./components/Footer"
 import Hero from "./components/Hero"
 import Navbar from "./components/Navbar"
 import SocialNetworks from "./components/SocialNetworks"
@@ -14,6 +15,7 @@ function App() {
       <AboutMe />
       <Contact />
       <Statistics />
+      <Footer />
     </>
   )
 }

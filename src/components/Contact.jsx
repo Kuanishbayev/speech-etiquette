@@ -1,4 +1,4 @@
-import { FaLocationDot } from 'react-icons/fa6'
+import { FaFacebook, FaLocationDot, FaTwitter, FaYoutube } from 'react-icons/fa6'
 import { ImPhone } from 'react-icons/im'
 import { IoIosMail } from 'react-icons/io'
 import Button from '@mui/material/Button';
@@ -14,9 +14,34 @@ const Contact = () => {
                     <p className='text-center lg:text-start pt-6 text-cyan-100'>Lorem, ipsum dolor sit amet consectetur adipisicing elit. Cum, commodi temporibus vitae maxime ducimus laboriosam non vel fugit sequi tempora!</p>
                 </div>
             <ul className='flex flex-col gap-4'>
-                <li className='flex items-center gap-2 text-cyan-100'><ImPhone className='fill-teal-300' /><span>+ (123) 456 7890</span></li>
-                <li className='flex items-center gap-2 text-cyan-100'><IoIosMail className='fill-teal-300' /><span>contact@xyzwebsite.com</span></li>
-                <li className='flex items-center gap-2 text-cyan-100'><FaLocationDot className='fill-teal-300' /><span>11, Street 342, Abcd Fgh</span></li>
+                <li className='text-cyan-100'>
+                    <a href="tel:123-456-7890p123" className='flex items-center gap-2'>
+                        <ImPhone className='fill-teal-300' /><span>+ (123) 456 7890</span>
+                    </a>
+                </li>
+                <li className='flex items-center gap-2 text-cyan-100'>
+                    <IoIosMail className='fill-teal-300' /><span>contact@xyzwebsite.com</span>
+                </li>
+                <li className='flex items-center gap-2 text-cyan-100'>
+                    <FaLocationDot className='fill-teal-300' /><span>11, Street 342, Abcd Fgh</span>
+                </li>
+            </ul>
+            <ul className='flex gap-4 lg:hidden'>
+                <li>
+                    <a href="#">
+                        <FaFacebook size={30} className='fill-white' />
+                    </a>
+                </li>
+                <li>
+                    <a href="#">
+                        <FaTwitter size={30} className='fill-white' />
+                    </a>
+                </li>
+                <li>
+                    <a href="#">
+                        <FaYoutube size={30} className='fill-white' />
+                    </a>
+                </li>
             </ul>
             </div>
             <form action='https://formsubmit.co/kuanishbayevyernazar@gmail.com' method='post' className='flex flex-col bg-white p-10 gap-4 text-gray-600 rounded-lg max-w-lg'>
