@@ -12,7 +12,7 @@ const SocialNetworks = () => {
     }
     window.addEventListener('scroll', changeLogoColor)
   return (
-    <div className='hidden fixed right-10 top-1/2 -translate-y-1/2'>
+    <div className='hidden lg:block fixed right-10 top-1/2 -translate-y-1/2'>
         <ul className='flex flex-col gap-4'>
             <li>
                 <a href="#">
