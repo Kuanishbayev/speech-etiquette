@@ -4,8 +4,8 @@ import { TypeAnimation } from 'react-type-animation'
 const AboutMe = () => {
   return (
       <div id='about-me' className='bg-black text-white'>
-          <div className='max-w-[1280px] mx-auto flex lg:flex-row flex-col justify-center gap-4 px-4 lg:px-0 py-12'>
-              <img src={bioImg} alt="bio" />
+          <div className='max-w-[1280px] mx-auto grid lg:grid-cols-2 justify-items-center items-center gap-4 px-4 lg:px-0 py-12'>
+              <img src={bioImg} alt="bio" className='w-96' />
               <div className='flex flex-col gap-4'>
                 <p className='lg:text-left text-center font-bold text-3xl'>UTESHOVA ZERNE HÚRMETILLAEVNA</p>
                 <p className='lg:text-left text-center font-bold'>Berdaq atındağı Qaraqalpaq mámleketlik universiteti Inglis tili hám ádebiyatı kafedrası baslığı, filologiya ilimleri kandidatı, docent</p>

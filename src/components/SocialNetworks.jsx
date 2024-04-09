@@ -4,7 +4,7 @@ import { FaFacebook, FaTwitter, FaYoutube } from 'react-icons/fa'
 const SocialNetworks = () => {
     const [isdark, setDark] = useState(true)
     const changeLogoColor = () => {
-        if (window.scrollY >= 170 && window.scrollY <= 900) {
+        if (window.scrollY >= 450 && window.scrollY <= 1100) {
             setDark(false)
         } else {
             setDark(true)
