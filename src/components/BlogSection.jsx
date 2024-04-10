@@ -24,7 +24,7 @@ const Blogs = () => {
       <div className='flex flex-col gap-4 lg:flex-row lg:justify-center'>
         {
           data && data.slice(0, 3).map((item, i) => (
-            <BlogCard key={i} title={item.title} body={item.body} />
+            <BlogCard key={i} id={item.id} title={item.title} body={item.body} />
           ))
         }
       </div>
