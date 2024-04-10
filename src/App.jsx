@@ -1,22 +1,19 @@
-import AboutMe from "./components/AboutMe"
-import Contact from "./components/Contact"
+import { BrowserRouter, Routes, Route } from "react-router-dom"
 import Footer from "./components/Footer"
-import Hero from "./components/Hero"
 import Navbar from "./components/Navbar"
-import SocialNetworks from "./components/SocialNetworks"
-import Statistics from "./components/Statistics"
+import Home from "./pages/Home"
+import Blogs from "./pages/Blogs"
 
 function App() {
   return (
-    <>
+    <BrowserRouter>
       <Navbar />
-      <SocialNetworks />
-      <Hero />
-      <AboutMe />
-      <Contact />
-      <Statistics />
+      <Routes>
+        <Route path="/" element={<Home />} />
+        <Route path="/blogs" element={<Blogs />} />
+      </Routes>
       <Footer />
-    </>
+    </BrowserRouter>
   )
 }
 
