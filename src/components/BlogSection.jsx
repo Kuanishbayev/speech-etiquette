@@ -16,7 +16,7 @@ const Blogs = () => {
       <ul className='flex justify-between mb-4'>
         <li className='font-bold text-xl flex items-center gap-2'><FaCircleDot className='fill-indigo-700' />Blogs</li>
         <li className='hover:text-blue-600'>
-          <Link to='/blogs' className='flex items-center gap-2'>
+          <Link to='blogs' className='flex items-center gap-2'>
             <span>Hammesi</span><FaArrowRight />
           </Link>
         </li>

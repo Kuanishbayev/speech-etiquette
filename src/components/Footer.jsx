@@ -6,7 +6,7 @@ const Footer = () => {
         <div className="flex flex-col items-center gap-4">
             <img src={logoImg} alt="logo" className="w-20" />
             <p>&copy; 2024</p>
-            <p>Разработчик сайта: <span className="font-bold"><a href="#">IMAX Company</a></span></p>
+            <p>Website developers: <span className="font-bold"><a href="#">IMAX Company</a></span></p>
         </div>
     </footer>
   )

@@ -19,8 +19,10 @@ const Contact = () => {
                         <ImPhone className='fill-teal-300' /><span>+ (123) 456 7890</span>
                     </a>
                 </li>
-                <li className='flex items-center gap-2 text-cyan-100'>
-                    <IoIosMail className='fill-teal-300' /><span>contact@xyzwebsite.com</span>
+                <li className='text-cyan-100'>
+                    <a className='flex items-center gap-2' href="mailto: contact@xyzwebsite.com">
+                        <IoIosMail className='fill-teal-300' /><span>contact@xyzwebsite.com</span>
+                    </a>
                 </li>
                 <li className='flex items-center gap-2 text-cyan-100'>
                     <FaLocationDot className='fill-teal-300' /><span>11, Street 342, Abcd Fgh</span>

@@ -24,7 +24,7 @@ const Navbar = () => {
         if (location != '/') setColor(true)
     })
   return (
-    <nav className={color ? 'sticky py-5 top-0 ease-in duration-300 bg-slate-50 z-10' : 'sticky py-5 top-0 z-10 ease-in duration-300'}>
+    <nav className={color ? 'backdrop-blur-3xl sticky py-5 top-0 ease-in duration-300 bg-slate-50/30 z-10' : 'sticky py-5 top-0 z-10 ease-in duration-300'}>
         <div className='max-w-[1280px] mx-auto flex justify-between items-center px-4 lg:px-0'>
             <div className="logo">
                 <Link to='/'>
@@ -51,7 +51,7 @@ const Navbar = () => {
             <div className={location.pathname != '/' ? 'hidden' : 'lg:hidden'} onClick={() => setMenu(prev => !prev)}>
                 {menu ? <IoClose size={30} /> : <IoMenu size={30} />}
             </div>
-                <ul className={menu ? 'opacity-90 ease-in-out duration-200 font-bold flex flex-col gap-4 items-center justify-center py-10 absolute top-full right-0 bg-sky-600 w-full' : 'hidden'} onClick={() => setMenu(false)}>
+                <ul className={menu ? 'backdrop-blur-md ease-in-out duration-200 font-bold flex flex-col gap-4 items-center justify-center py-10 absolute top-full right-0 bg-sky-600/30 w-full' : 'hidden'} onClick={() => setMenu(false)}>
                     <li>
                         <a href="#">Home</a>
                     </li>

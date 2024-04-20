@@ -5,8 +5,8 @@ import thumbnailImg from '../assets/blogs/itBhj90G_dVWFHDW3KBMpiHGzlg6VBml_mediu
 
 const BlogCard = ({id, title, body}) => {
   return (
-    <div className="card lg:max-w-[30%]">
-      <Link to={`/post/${id}`}>
+    <div className="lg:max-w-[30%]">
+      <Link to={`post/${id}`}>
         <div className="img">
           <img className='w-full' src={thumbnailImg} alt="thumbnail" />
         </div>
