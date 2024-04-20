@@ -1,7 +1,6 @@
 import { Pagination } from '@mui/material';
-import { useEffect, useState } from 'react'
+import { useEffect, useRef, useState } from 'react'
 import BlogCard from '../../components/admin/BlogCard';
-import { Link } from 'react-router-dom';
 import { CiSearch } from 'react-icons/ci';
 import Modal from '../../components/admin/Modal';
 import { IoTrashOutline } from 'react-icons/io5';
@@ -15,27 +14,38 @@ const Trash = () => {
   const [currentPage, setCurrentPage] = useState(1);
   const [pageQty, setPageQty] = useState();
   const itemsPerPage = 3;
+  const [search, setSearch] = useState('')
+  const inputRef = useRef()
 
   useEffect(() => {
     fetch('https://dummyjson.com/posts')
     .then(res => res.json())
     .then(json => {
       setData(json.posts);
-      setPageQty(Math.ceil(data.length / itemsPerPage));
-    })
-  })
+    });
+  }, [])
+  
+  const handleSearch = (e) => {
+    e.preventDefault()
+    setSearch(inputRef.current.value)
+    setCurrentPage(1)
+  }
+
+  useEffect(() => {
+    setPageQty(Math.ceil(data.filter(item => search.toLowerCase() === '' ? item : item.title.toLowerCase().includes(search)).length / itemsPerPage))
+  }, [search, data]);
 
   return (
     <div className='w-full mx-auto p-12'>
       <div className='flex justify-center mb-10'>
         <form className='flex gap-2 w-1/2'>
-          <input className='border border-gray-300 rounded-md p-2.5 w-full' type="text" placeholder='Search in trash' />
-          <button className='bg-blue-100 p-4 rounded-md'><CiSearch /></button>
+          <input ref={inputRef} className='border border-gray-300 rounded-md p-2.5 w-full' type="text" placeholder='Search in trash' />
+          <button onClick={handleSearch} className='bg-blue-100 p-4 rounded-md'><CiSearch /></button>
         </form>
       </div>
       <div className='flex gap-4 justify-evenly'>
         {
-          data && data.slice(itemsPerPage * (currentPage - 1), currentPage * itemsPerPage).map((item, i) => (
+          data && data.filter(item => search.toLowerCase() === '' ? item : item.title.toLowerCase().includes(search)).slice(itemsPerPage * (currentPage - 1), currentPage * itemsPerPage).map((item, i) => (
             <BlogCard key={i} id={item.id} title={item.title} body={item.body}>
               <div className="hidden group-hover/item:flex absolute top-2 right-2 gap-2">
                 <button className="bg-white p-2 rounded-md shadow-md" title='Return'>

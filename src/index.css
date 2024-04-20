@@ -21,3 +21,7 @@ body {
     flex: 0 0 100%;
     min-width: 0;
 }
+
+li a.active {
+    background-color: gray;
+}

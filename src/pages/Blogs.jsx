@@ -16,7 +16,7 @@ const Blogs = () => {
     .then(json => {
       setData(json.posts);
     });
-  })
+  }, [])
   
   const handleSearch = (e) => {
     e.preventDefault()
