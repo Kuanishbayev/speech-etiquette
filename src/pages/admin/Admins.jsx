@@ -52,7 +52,7 @@ const Admins = () => {
                     <p>{item.firstName}</p>
                     <p>{item.lastName}</p>
                   </div>
-                  <div className="invisible group-hover/item:visible flex gap-2">
+                  <div className="lg:invisible lg:group-hover/item:visible flex gap-2">
                     <button className="bg-white p-2 rounded-md shadow-md" title='Edit'>
                       <MdModeEdit />
                     </button>
@@ -69,7 +69,7 @@ const Admins = () => {
           </div>
       </div>
       <Modal open={open} onClose={() => setOpen(false)}>
-        <form className='space-y-4'>
+        <form className='space-y-4 md:w-96'>
           <div>
             <label htmlFor="first_name" className='block mb-2 text-sm font-medium text-gray-900'>First Name</label>
             <input type="text" id='first_name' name='first_name' className='border border-gray-300 rounded-lg p-2.5 text-gray-900 w-full' required />

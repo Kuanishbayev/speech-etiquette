@@ -1,14 +1,13 @@
 import { LuCalendar } from "react-icons/lu"
 import { Link } from "react-router-dom"
-import thumbnailImg from '../assets/blogs/itBhj90G_dVWFHDW3KBMpiHGzlg6VBml_medium.jpg'
 
 
 const BlogCard = ({id, title, body}) => {
   return (
     <div className="lg:max-w-[30%]">
-      <Link to={`post/${id}`}>
+      <Link to={`/post/${id}`}>
         <div className="img">
-          <img className='w-full' src={thumbnailImg} alt="thumbnail" />
+          <img className='object-contain w-full' src={`https://picsum.photos/300/200?random=${id}`} alt="thumbnail" />
         </div>
         <div className="content">
           <p className='font-bold pb-6 pt-2 md:text-xl lg:text-lg line-clamp-3'>{title}</p>

@@ -1,7 +1,7 @@
 import { Pagination } from '@mui/material';
 import { useEffect, useRef, useState } from 'react'
 import BlogCard from '../../components/admin/BlogCard';
-import { Link, Outlet } from 'react-router-dom';
+import { Link } from 'react-router-dom';
 import { CiSearch } from 'react-icons/ci';
 import Modal from '../../components/admin/Modal';
 import { IoTrashOutline } from 'react-icons/io5';
@@ -48,16 +48,16 @@ const BlogsManager = () => {
             <span className='lg:hidden text-xl'>+</span>
           </Link>
         </div>
-        <div className='lg:flex gap-4 justify-evenly'>
+        <div className='lg:flex gap-4 justify-between'>
           {
             data && data.filter(item => search.toLowerCase() === '' ? item : item.title.toLowerCase().includes(search)).slice(itemsPerPage * (currentPage - 1), currentPage * itemsPerPage).map((item, i) => (
               <BlogCard key={i} id={item.id} title={item.title} body={item.body}>
-                <div className="hidden group-hover/item:flex absolute top-2 right-2 gap-2">
+                <div className="lg:hidden lg:group-hover/item:flex flex absolute top-2 md:top-4 lg:top-2 right-2 md:right-4 lg:right-2 gap-2 md:gap-4 lg:gap-2">
                   <button className="bg-white p-2 rounded-md shadow-md" title='Edit'>
-                    <MdModeEdit />
+                    <MdModeEdit className='size-5 md:size-10 lg:size-fit' />
                   </button>
                   <button className="bg-white p-2 rounded-md shadow-md" onClick={() => setOpen(true)}>
-                    <MdDelete />
+                    <MdDelete className='size-5 md:size-10 lg:size-fit' />
                   </button>
                 </div>
               </BlogCard>

@@ -32,7 +32,7 @@ const Blogs = () => {
   return (
     <div className='max-w-[1280px] mx-auto px-4 lg:px-0 py-12'>
       <form className='mb-10 flex justify-center' onSubmit={handleSearch}>
-          <input className='w-1/2 shadow border p-4 border-gray-300 rounded-lg' type="search" placeholder='Search blogs' ref={inputRef} />
+          <input className='w-full lg:w-1/2 shadow border p-4 border-gray-300 rounded-lg' type="search" placeholder='Search blogs' ref={inputRef} />
       </form>
       <div className='flex flex-col gap-4 lg:flex-row lg:justify-center lg:flex-wrap'>
         {
