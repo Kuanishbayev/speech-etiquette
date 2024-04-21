@@ -26,7 +26,7 @@ function App() {
 
         <Route path="admin" element={<AdminLayout />}>
           <Route element={<ProtectedRoutes />}>
-            <Route path="blogs-manager" element={<BlogsManager />} />
+            <Route index element={<BlogsManager />} />
             <Route path="create-post" element={<Editor />} />
             <Route path="admins" element={<Admins />} />
             <Route path="trash" element={<Trash />} />

@@ -37,13 +37,13 @@ const Trash = () => {
 
   return (
     <div className='w-full mx-auto p-12'>
-      <div className='flex justify-center mb-10'>
-        <form className='flex gap-2 w-1/2'>
+      <div className='flex lg:justify-center mb-10'>
+        <form className='flex gap-2 w-full lg:w-1/2'>
           <input ref={inputRef} className='border border-gray-300 rounded-md p-2.5 w-full' type="text" placeholder='Search in trash' />
-          <button onClick={handleSearch} className='bg-blue-100 p-4 rounded-md'><CiSearch /></button>
+          <button onClick={handleSearch} className='hidden lg:block bg-blue-100 p-4 rounded-md'><CiSearch /></button>
         </form>
       </div>
-      <div className='flex gap-4 justify-evenly'>
+      <div className='lg:flex gap-4 justify-evenly'>
         {
           data && data.filter(item => search.toLowerCase() === '' ? item : item.title.toLowerCase().includes(search)).slice(itemsPerPage * (currentPage - 1), currentPage * itemsPerPage).map((item, i) => (
             <BlogCard key={i} id={item.id} title={item.title} body={item.body}>

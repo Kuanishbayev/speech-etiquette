@@ -34,12 +34,15 @@ const Admins = () => {
   return (
     <div className='grow pt-12'>
       <div className='max-w-[90%] mx-auto'>
-        <div className='flex justify-between mb-10'>
-          <form className='flex gap-2'>
+        <div className='flex justify-between items-center lg:items-stretch mb-10'>
+          <form className='flex gap-2' onSubmit={handleSearch}>
             <input ref={inputRef} className='border border-gray-300 rounded-md p-2.5' type="text" placeholder='Search admins' />
-            <button onClick={handleSearch} className='bg-blue-100 p-4 rounded-md'><CiSearch /></button>
+            <button className='hidden lg:block bg-blue-100 p-4 rounded-md'><CiSearch /></button>
           </form>
-          <button onClick={() => setOpen(true)} className='bg-green-500 text-white px-4 py-2 rounded-lg shadow-md font-bold flex items-center'>Add a new admin</button>
+          <button onClick={() => setOpen(true)} className='size-10 lg:size-auto bg-green-500 text-white rounded-lg shadow-md font-bold'>
+            <span className='hidden lg:inline lg:px-4 lg:py-2'>Add a new admin</span>
+            <span className='lg:hidden text-xl'>+</span>
+            </button>
         </div>
           <ul className='flex flex-col gap-4'>
             {
@@ -66,7 +69,7 @@ const Admins = () => {
           </div>
       </div>
       <Modal open={open} onClose={() => setOpen(false)}>
-        <form className='w-96 space-y-4'>
+        <form className='space-y-4'>
           <div>
             <label htmlFor="first_name" className='block mb-2 text-sm font-medium text-gray-900'>First Name</label>
             <input type="text" id='first_name' name='first_name' className='border border-gray-300 rounded-lg p-2.5 text-gray-900 w-full' required />
