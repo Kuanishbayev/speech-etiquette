@@ -51,23 +51,23 @@ const Navbar = () => {
             <div className={location.pathname != '/' ? 'hidden' : 'lg:hidden'} onClick={() => setMenu(prev => !prev)}>
                 {menu ? <IoClose size={30} /> : <IoMenu size={30} />}
             </div>
-                <ul className={menu ? 'backdrop-blur-md ease-in-out duration-200 font-bold flex flex-col gap-4 items-center justify-center py-10 absolute top-full right-0 bg-sky-600/30 w-full' : 'hidden'} onClick={() => setMenu(false)}>
-                    <li>
-                        <a href="#">Home</a>
-                    </li>
-                    <li>
-                        <a href="#about-me">About Me</a>
-                    </li>
-                    <li>
-                        <a href="#blogs">Blogs</a>
-                    </li>
-                    <li>
-                        <a href="#contact">Contact Us</a>
-                    </li>
-                    <li>
-                        <a href="#statistics">Statistics</a>
-                    </li>
-                </ul>
+            <ul className={menu ? 'backdrop-blur ease-in-out duration-200 font-bold flex flex-col gap-4 items-center justify-center py-10 absolute top-full right-0 bg-sky-500/70 w-full' : 'hidden'} onClick={() => setMenu(false)}>
+                <li>
+                    <a href="#">Home</a>
+                </li>
+                <li>
+                    <a href="#about-me">About Me</a>
+                </li>
+                <li>
+                    <a href="#blogs">Blogs</a>
+                </li>
+                <li>
+                    <a href="#contact">Contact Us</a>
+                </li>
+                <li>
+                    <a href="#statistics">Statistics</a>
+                </li>
+            </ul>
             </div>
     </nav>
   )
