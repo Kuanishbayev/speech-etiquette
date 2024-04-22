@@ -7,6 +7,7 @@ import Modal from '../../components/admin/Modal';
 import { IoTrashOutline } from 'react-icons/io5';
 import { MdDelete, MdModeEdit } from 'react-icons/md';
 import toast, { Toaster } from 'react-hot-toast'
+import DataNotFoundImg from '../../assets/data-not-found.jpg'
 
 const BlogsManager = () => {
   const [open, setOpen] = useState(false)
@@ -16,12 +17,14 @@ const BlogsManager = () => {
   const itemsPerPage = 3;
   const [search, setSearch] = useState('')
   const inputRef = useRef()
+  const [loading, setLoading] = useState(true)
 
   useEffect(() => {
     fetch('https://dummyjson.com/posts')
     .then(res => res.json())
     .then(json => {
-      setData(json.posts);
+      setData(json.posts)
+      setLoading(false)
     });
   }, [])
   
@@ -48,7 +51,23 @@ const BlogsManager = () => {
             <span className='lg:hidden text-xl'>+</span>
           </Link>
         </div>
-        <div className='lg:flex gap-4 justify-between'>
+        <div className='flex flex-col lg:flex-row gap-4 lg:justify-between'>
+          {loading && (
+            Array(itemsPerPage).fill(0).map((item, index) => (
+              <div key={index} className='animate-pulse lg:w-[30%] bg-gray-300'>
+                <div className="h-60 bg-gray-400"></div>
+                <div className='mt-4 flex flex-col gap-2 p-4'>
+                  <p className='h-6 mb-6 bg-gray-400 rounded-full'></p>
+                  <p className='h-4 bg-gray-400 rounded-full'></p>
+                  <p className='h-4 bg-gray-400 rounded-full'></p>
+                  <p className='h-4 bg-gray-400 rounded-full'></p>
+                  <p className='h-4 bg-gray-400 rounded-full'></p>
+                  <p className='h-4 bg-gray-400 rounded-full'></p>
+                  <p className='h-4 bg-gray-400 self-end w-1/2 rounded-full'></p>
+                </div>
+              </div>
+            ))
+          )}
           {
             data && data.filter(item => search.toLowerCase() === '' ? item : item.title.toLowerCase().includes(search)).slice(itemsPerPage * (currentPage - 1), currentPage * itemsPerPage).map((item, i) => (
               <BlogCard key={i} id={item.id} title={item.title} body={item.body}>
@@ -63,6 +82,7 @@ const BlogsManager = () => {
               </BlogCard>
             ))
           }
+          {!loading && (data.filter(item => search.toLowerCase() === '' ? item : item.title.toLowerCase().includes(search)).length === 0 && <img src={DataNotFoundImg} alt="data-not-found" />)}
         </div>
         <div className="flex justify-center pt-4">
           <Pagination count={pageQty} onChange={(_, num) => setCurrentPage(num)} showFirstButton showLastButton />

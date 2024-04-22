@@ -4,7 +4,6 @@ import { LuCalendar } from "react-icons/lu"
 const BlogCard = ({id, title, body, children}) => {
   return (
     <div className="hover:bg-gray-100 hover:opacity-80 group/item relative lg:max-w-[30%]">
-
       <div className="img">
         <img className='object-contain w-full' src={`https://picsum.photos/300/200?random=${id}`} alt="thumbnail" />
       </div>

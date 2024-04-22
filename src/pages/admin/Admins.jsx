@@ -3,6 +3,7 @@ import { CiSearch } from 'react-icons/ci'
 import { MdDelete, MdModeEdit } from 'react-icons/md'
 import Modal from '../../components/admin/Modal'
 import { useEffect, useRef, useState } from 'react'
+import DataNotFoundImg from '../../assets/data-not-found.jpg'
 
 const Admins = () => {
   const [open, setOpen] = useState(false);
@@ -12,12 +13,14 @@ const Admins = () => {
   const itemsPerPage = 6;
   const [search, setSearch] = useState('')
   const inputRef = useRef()
+  const [loading, setLoading] = useState(true)
 
   useEffect(() => {
     fetch('https://dummyjson.com/users?limit=10')
     .then(res => res.json())
     .then(json => {
       setData(json.users);
+      setLoading(false)
     });
   }, [])
   
@@ -45,6 +48,16 @@ const Admins = () => {
             </button>
         </div>
           <ul className='flex flex-col gap-4'>
+            {loading && (
+              Array(itemsPerPage).fill(0).map((item, index) => (
+                <li key={index} className='animate-pulse shadow px-4 py-6 flex items-center bg-gray-300 rounded-md'>
+                  <div className='flex gap-4'>
+                    <p className='h-4 w-16 md:w-20 bg-gray-400 rounded-full'></p>
+                    <p className='h-4 w-24 md:w-40 bg-gray-400 rounded-full'></p>
+                  </div>
+                </li>
+              ))
+            )}
             {
               data && data.filter(item => search.toLowerCase() === '' ? item : (item.firstName + item.lastName).toLowerCase().includes(search)).slice(itemsPerPage * (currentPage - 1), currentPage * itemsPerPage).map((item, i) => (
                 <li key={item.id} className='hover:bg-green-200 group/item shadow p-4 flex justify-between items-center bg-green-300 rounded-md'>
@@ -63,6 +76,7 @@ const Admins = () => {
                 </li>
               ))
             }
+            {!loading && (data.filter(item => search.toLowerCase() === '' ? item : (item.firstName + item.lastName).toLowerCase().includes(search)).length === 0 && <img src={DataNotFoundImg} alt="data-not-found" />)}
           </ul>
         <div className="flex justify-center mt-10">
         <Pagination count={pageQty} onChange={(_, num) => setCurrentPage(num)} showFirstButton showLastButton />
