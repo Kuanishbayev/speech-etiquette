@@ -4,6 +4,7 @@ import { MdDelete, MdModeEdit } from 'react-icons/md'
 import Modal from '../../components/admin/Modal'
 import { useEffect, useRef, useState } from 'react'
 import DataNotFoundImg from '../../assets/data-not-found.jpg'
+import { useForm } from 'react-hook-form'
 
 const Admins = () => {
   const [open, setOpen] = useState(false);
@@ -14,6 +15,7 @@ const Admins = () => {
   const [search, setSearch] = useState('')
   const inputRef = useRef()
   const [loading, setLoading] = useState(true)
+  const { register, handleSubmit, watch, formState: { errors } } = useForm()
 
   useEffect(() => {
     fetch('https://dummyjson.com/users?limit=10')
@@ -33,6 +35,10 @@ const Admins = () => {
   useEffect(() => {
     setPageQty(Math.ceil(data.filter(item => search.toLowerCase() === '' ? item : item.firstName.toLowerCase().includes(search)).length / itemsPerPage))
   }, [search, data]);
+
+  const onSubmit = (data) => {
+    console.log(data);
+  }
 
   return (
     <div className='grow pt-12'>
@@ -83,7 +89,7 @@ const Admins = () => {
           </div>
       </div>
       <Modal open={open} onClose={() => setOpen(false)}>
-        <form className='space-y-4 md:w-96'>
+        <form className='space-y-4 md:w-96' onSubmit={handleSubmit(onSubmit)}>
           <div>
             <label htmlFor="first_name" className='block mb-2 text-sm font-medium text-gray-900'>First Name</label>
             <input type="text" id='first_name' name='first_name' className='border border-gray-300 rounded-lg p-2.5 text-gray-900 w-full' required />
@@ -98,12 +104,26 @@ const Admins = () => {
           </div>
           <div>
             <label htmlFor="password1" className='block mb-2 text-sm font-medium text-gray-900'>Password</label>
-            <input type="password" id='password1' name='password1' className='border border-gray-300 rounded-lg p-2.5 text-gray-900 w-full' required />
+            <input {...register('password1', {minLength: {value: 8, message: "Password must have at least 8 characters!"}})} type="password" id='password1' name='password1' className='border border-gray-300 rounded-lg p-2.5 text-gray-900 w-full' min='8' required />
           </div>
           <div>
             <label htmlFor="password2" className='block mb-2 text-sm font-medium text-gray-900'>Confirm password</label>
-            <input type="password" id='password2' name='password2' className='border border-gray-300 rounded-lg p-2.5 text-gray-900 w-full' required />
+            <input
+              {...register('password2', {
+                validate: (value) => {
+                  if (value !== watch('password1')) {
+                    return 'Passwords did not match.'
+                  }
+                }
+              })}
+              type="password"
+              id='password2'
+              name='password2'
+              className='border border-gray-300 rounded-lg p-2.5 text-gray-900 w-full'
+              required />
           </div>
+          {errors.password1 && <div className='text-red-600'>{errors.password1.message}</div>}
+          {errors.password2 && <div className='text-red-600'>{errors.password2.message}</div>}
           <div className='flex justify-end'>
             <button className='mr-0 font-bold py-2 px-8 mx-auto rounded-md text-white shadow-md bg-green-500'>Add</button>
           </div>
