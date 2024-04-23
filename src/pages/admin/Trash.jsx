@@ -80,7 +80,7 @@ const Trash = () => {
           }
           {!loading && (data.filter(item => search.toLowerCase() === '' ? item : item.title.toLowerCase().includes(search)).length === 0 && <img src={DataNotFoundImg} alt="data-not-found" />)}
         </div>
-        <div className="flex justify-center pt-4">
+        <div className="flex justify-center pt-4 mb-20">
           <Pagination count={pageQty} onChange={(_, num) => setCurrentPage(num)} showFirstButton showLastButton />
         </div>
         <Modal open={open} onClose={() => setOpen(false)}>
