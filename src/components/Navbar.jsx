@@ -51,7 +51,7 @@ const Navbar = () => {
             <div className={location.pathname != '/' ? 'hidden' : 'lg:hidden'} onClick={() => setMenu(prev => !prev)}>
                 {menu ? <IoClose size={30} /> : <IoMenu size={30} />}
             </div>
-            <ul className={menu ? 'ease-in-out duration-200 font-bold flex flex-col gap-4 items-center justify-center py-10 absolute top-full right-0 bg-sky-500 w-full' : 'hidden'} onClick={() => setMenu(false)}>
+            <ul className={menu ? 'ease-in-out duration-200 font-bold flex flex-col gap-4 items-center justify-center py-10 absolute top-full right-0 bg-sky-500/95 w-full' : 'hidden'} onClick={() => setMenu(false)}>
                 <li>
                     <a href="#">Home</a>
                 </li>
