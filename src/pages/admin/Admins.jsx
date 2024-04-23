@@ -66,7 +66,7 @@ const Admins = () => {
             )}
             {
               data && data.filter(item => search.toLowerCase() === '' ? item : (item.firstName + item.lastName).toLowerCase().includes(search)).slice(itemsPerPage * (currentPage - 1), currentPage * itemsPerPage).map((item, i) => (
-                <li key={item.id} className='hover:bg-green-200 group/item shadow p-4 flex justify-between items-center bg-green-300 rounded-md'>
+                <li key={item.id} className='lg:hover:bg-green-200 group/item shadow p-4 flex justify-between items-center bg-green-300 rounded-md'>
                   <div className='flex gap-4 font-bold'>
                     <p>{item.firstName}</p>
                     <p>{item.lastName}</p>
