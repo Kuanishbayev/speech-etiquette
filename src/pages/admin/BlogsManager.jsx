@@ -30,12 +30,12 @@ const BlogsManager = () => {
   
   const handleSearch = (e) => {
     e.preventDefault()
-    setSearch(inputRef.current.value)
+    setSearch(inputRef.current.value.toLowerCase())
     setCurrentPage(1)
   }
 
   useEffect(() => {
-    setPageQty(Math.ceil(data.filter(item => search.toLowerCase() === '' ? item : item.title.toLowerCase().includes(search)).length / itemsPerPage))
+    setPageQty(Math.ceil(data.filter(item => search === '' ? item : item.title.toLowerCase().includes(search)).length / itemsPerPage))
   }, [search, data]);
 
   return (
@@ -69,7 +69,7 @@ const BlogsManager = () => {
             ))
           )}
           {
-            data && data.filter(item => search.toLowerCase() === '' ? item : item.title.toLowerCase().includes(search)).slice(itemsPerPage * (currentPage - 1), currentPage * itemsPerPage).map((item, i) => (
+            data && data.filter(item => search === '' ? item : item.title.toLowerCase().includes(search)).slice(itemsPerPage * (currentPage - 1), currentPage * itemsPerPage).map((item, i) => (
               <BlogCard key={i} id={item.id} title={item.title} body={item.body}>
                 <div className="lg:hidden lg:group-hover/item:flex flex absolute top-2 md:top-4 lg:top-2 right-2 md:right-4 lg:right-2 gap-2 md:gap-4 lg:gap-2">
                   <button className="bg-white p-2 rounded-md shadow-md" title='Edit'>
@@ -82,7 +82,7 @@ const BlogsManager = () => {
               </BlogCard>
             ))
           }
-          {!loading && (data.filter(item => search.toLowerCase() === '' ? item : item.title.toLowerCase().includes(search)).length === 0 && <img src={DataNotFoundImg} alt="data-not-found" />)}
+          {!loading && (data.filter(item => search === '' ? item : item.title.toLowerCase().includes(search)).length === 0 && <img src={DataNotFoundImg} alt="data-not-found" />)}
         </div>
         <div className="flex justify-center pt-4 mb-20">
           <Pagination count={pageQty} onChange={(_, num) => setCurrentPage(num)} showFirstButton showLastButton />

@@ -23,12 +23,12 @@ const Blogs = () => {
   
   const handleSearch = (e) => {
     e.preventDefault()
-    setSearch(inputRef.current.value)
+    setSearch(inputRef.current.value.toLowerCase())
     setCurrentPage(1)
   }
 
   useEffect(() => {
-    setPageQty(Math.ceil(data.filter(item => search.toLowerCase() === '' ? item : item.title.toLowerCase().includes(search)).length / itemsPerPage))
+    setPageQty(Math.ceil(data.filter(item => search === '' ? item : item.title.toLowerCase().includes(search)).length / itemsPerPage))
   }, [search, data]);
 
 
@@ -55,11 +55,11 @@ const Blogs = () => {
           ))
         )}
         {
-          data && data.filter(item => search.toLowerCase() === '' ? item : item.title.toLowerCase().includes(search)).slice(itemsPerPage * (currentPage - 1), currentPage * itemsPerPage).map((item, i) => (
+          data && data.filter(item => search === '' ? item : item.title.toLowerCase().includes(search)).slice(itemsPerPage * (currentPage - 1), currentPage * itemsPerPage).map((item, i) => (
             <BlogCard key={i} id={item.id} title={item.title} body={item.body} />
           ))
         }
-        {!loading && (data.filter(item => search.toLowerCase() === '' ? item : item.title.toLowerCase().includes(search)).length === 0 && <img src={DataNotFoundImg} alt="data-not-found" />)}
+        {!loading && (data.filter(item => search === '' ? item : item.title.toLowerCase().includes(search)).length === 0 && <img src={DataNotFoundImg} alt="data-not-found" />)}
       </div>
       <div className="flex justify-center pt-4">
           <Pagination count={pageQty} onChange={(_, num) => setCurrentPage(num)} showFirstButton showLastButton />

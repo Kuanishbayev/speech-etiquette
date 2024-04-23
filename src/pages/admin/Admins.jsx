@@ -28,12 +28,12 @@ const Admins = () => {
   
   const handleSearch = (e) => {
     e.preventDefault()
-    setSearch(inputRef.current.value)
+    setSearch(inputRef.current.value.toLowerCase())
     setCurrentPage(1)
   }
 
   useEffect(() => {
-    setPageQty(Math.ceil(data.filter(item => search.toLowerCase() === '' ? item : item.firstName.toLowerCase().includes(search)).length / itemsPerPage))
+    setPageQty(Math.ceil(data.filter(item => search === '' ? item : item.firstName.toLowerCase().includes(search)).length / itemsPerPage))
   }, [search, data]);
 
   const onSubmit = (data) => {
@@ -65,7 +65,7 @@ const Admins = () => {
               ))
             )}
             {
-              data && data.filter(item => search.toLowerCase() === '' ? item : (item.firstName + item.lastName).toLowerCase().includes(search)).slice(itemsPerPage * (currentPage - 1), currentPage * itemsPerPage).map((item, i) => (
+              data && data.filter(item => search === '' ? item : (item.firstName + item.lastName).toLowerCase().includes(search)).slice(itemsPerPage * (currentPage - 1), currentPage * itemsPerPage).map((item, i) => (
                 <li key={item.id} className='lg:hover:bg-green-200 group/item shadow p-4 flex justify-between items-center bg-green-300 rounded-md'>
                   <div className='flex gap-4 font-bold'>
                     <p>{item.firstName}</p>
@@ -82,7 +82,7 @@ const Admins = () => {
                 </li>
               ))
             }
-            {!loading && (data.filter(item => search.toLowerCase() === '' ? item : (item.firstName + item.lastName).toLowerCase().includes(search)).length === 0 && <img src={DataNotFoundImg} alt="data-not-found" />)}
+            {!loading && (data.filter(item => search === '' ? item : (item.firstName + item.lastName).toLowerCase().includes(search)).length === 0 && <img src={DataNotFoundImg} alt="data-not-found" />)}
           </ul>
         <div className="flex justify-center mt-10 mb-20">
         <Pagination count={pageQty} onChange={(_, num) => setCurrentPage(num)} showFirstButton showLastButton />
