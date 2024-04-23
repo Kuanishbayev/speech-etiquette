@@ -27,7 +27,7 @@ export const Editor = () => {
             <label htmlFor="dropzone-file" className="absolute top-0 size-full invisible group-hover/item:visible flex flex-col items-center justify-center bg-gray-700/50 backdrop-blur-sm cursor-pointer border-2 border-gray-500 border-dashed rounded-lg bg-gray-50">
               <div className="flex flex-col items-center justify-center text-white">
                 <MdImage className="size-16 mb-4" />
-                <p className="text-sm mb-2"><span className="font-semibold">Click to change to a new image</span> or drag and drop</p>
+                <p className="text-sm mb-2 text-center"><span className="font-semibold">Click to change to a new image</span> or drag and drop</p>
                 <p className="text-xs">JPG, PNG, SVG, or GIF</p>
               </div>
               <input type="file" id="dropzone-file" className="hidden" onChange={handleImage} />
