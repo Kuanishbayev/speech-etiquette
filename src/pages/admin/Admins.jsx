@@ -84,7 +84,7 @@ const Admins = () => {
             }
             {!loading && (data.filter(item => search.toLowerCase() === '' ? item : (item.firstName + item.lastName).toLowerCase().includes(search)).length === 0 && <img src={DataNotFoundImg} alt="data-not-found" />)}
           </ul>
-        <div className="flex justify-center mt-10">
+        <div className="flex justify-center mt-10 mb-20">
         <Pagination count={pageQty} onChange={(_, num) => setCurrentPage(num)} showFirstButton showLastButton />
           </div>
       </div>
