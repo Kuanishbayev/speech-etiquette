@@ -5,6 +5,7 @@ import Modal from '../../components/admin/Modal'
 import { useEffect, useRef, useState } from 'react'
 import DataNotFoundImg from '../../assets/data-not-found.jpg'
 import { useForm } from 'react-hook-form'
+import { Helmet } from 'react-helmet'
 
 const Admins = () => {
   const [open, setOpen] = useState(false);
@@ -42,6 +43,9 @@ const Admins = () => {
 
   return (
     <div className='grow pt-12'>
+      <Helmet>
+        <title>Admins</title>
+      </Helmet>
       <div className='max-w-[90%] mx-auto'>
         <div className='flex justify-between items-center lg:items-stretch mb-10'>
           <form className='flex gap-2' onSubmit={handleSearch}>

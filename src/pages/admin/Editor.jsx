@@ -5,6 +5,7 @@ import "react-quill/dist/quill.snow.css";
 import { MdImage } from "react-icons/md";
 import { useForm } from "react-hook-form";
 import toast, { Toaster } from "react-hot-toast";
+import { Helmet } from "react-helmet";
 
 export const Editor = () => {
   const [image, setImage] = useState('')
@@ -49,6 +50,9 @@ export const Editor = () => {
 
   return (
     <>
+      <Helmet>
+          <title>Editor</title>
+      </Helmet>
       <form className="mx-auto p-4 lg:px-0 lg:py-10 flex flex-col gap-4" onSubmit={handleSubmit(onSubmit)}>
         {image ? (
           <div className='relative h-96 group/item border'>

@@ -8,6 +8,7 @@ import { MdDelete } from 'react-icons/md';
 import { GrUndo } from 'react-icons/gr';
 import toast, { Toaster } from 'react-hot-toast';
 import DataNotFoundImg from '../../assets/data-not-found.jpg'
+import { Helmet } from 'react-helmet';
 
 const Trash = () => {
   const [open, setOpen] = useState(false)
@@ -40,6 +41,9 @@ const Trash = () => {
 
   return (
     <div className='grow pt-12'>
+      <Helmet>
+        <title>Trash</title>
+      </Helmet>
       <div className='max-w-[90%] mx-auto'>
         <div className='flex lg:justify-center mb-10'>
           <form className='flex gap-2 w-full lg:w-1/2'>

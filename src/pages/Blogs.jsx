@@ -2,6 +2,7 @@ import { useEffect, useRef, useState } from 'react'
 import BlogCard from '../components/BlogCard'
 import { Pagination } from "@mui/material"
 import DataNotFoundImg from '../assets/data-not-found.jpg'
+import { Helmet } from 'react-helmet'
 
 const Blogs = () => {
   const [data, setData]  = useState([]);
@@ -34,6 +35,9 @@ const Blogs = () => {
 
   return (
     <div className='max-w-[1280px] mx-auto px-4 lg:px-0 py-12'>
+      <Helmet>
+        <title>Blogs</title>
+      </Helmet>
       <form className='mb-10 flex justify-center' onSubmit={handleSearch}>
           <input className='w-full lg:w-1/2 shadow border p-4 border-gray-300 rounded-lg' type="search" placeholder='Search blogs' ref={inputRef} />
       </form>

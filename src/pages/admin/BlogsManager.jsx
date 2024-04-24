@@ -8,6 +8,7 @@ import { IoTrashOutline } from 'react-icons/io5';
 import { MdDelete, MdModeEdit } from 'react-icons/md';
 import toast, { Toaster } from 'react-hot-toast'
 import DataNotFoundImg from '../../assets/data-not-found.jpg'
+import { Helmet } from 'react-helmet';
 
 const BlogsManager = () => {
   const [open, setOpen] = useState(false)
@@ -40,6 +41,9 @@ const BlogsManager = () => {
 
   return (
     <div className='grow pt-12'>
+      <Helmet>
+        <title>Blogs manager</title>
+      </Helmet>
       <div className='max-w-[90%] mx-auto'>
         <div className='flex justify-between items-center lg:items-stretch mb-10'>
           <form className='flex gap-2' onSubmit={handleSearch}>
