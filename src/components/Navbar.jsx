@@ -44,9 +44,6 @@ const Navbar = () => {
                 <li>
                     <a href="#contact">Contact Us</a>
                 </li>
-                <li>
-                    <a href="#statistics">Statistics</a>
-                </li>
             </ul>
             <div className={location.pathname != '/' ? 'hidden' : 'lg:hidden'} onClick={() => setMenu(prev => !prev)}>
                 {menu ? <IoClose size={30} /> : <IoMenu size={30} />}
@@ -63,9 +60,6 @@ const Navbar = () => {
                 </li>
                 <li>
                     <a href="#contact">Contact Us</a>
-                </li>
-                <li>
-                    <a href="#statistics">Statistics</a>
                 </li>
             </ul>
             </div>
