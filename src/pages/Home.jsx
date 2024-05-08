@@ -1,19 +1,11 @@
-import SocialNetworks from "../components/SocialNetworks"
-import Hero from "../components/Hero"
-import AboutMe from "../components/AboutMe"
 import BlogSection from "../components/BlogSection"
 import Contact from "../components/Contact"
-import { Helmet } from "react-helmet"
+import Hero from "../components/Hero"
 
 const Home = () => {
   return (
     <>
-        <Helmet>
-            <title>Speech Etiquette </title>
-        </Helmet>
-        <SocialNetworks />
         <Hero />
-        <AboutMe />
         <BlogSection />
         <Contact />
     </>

@@ -14,10 +14,10 @@ const Blogs = () => {
   const [loading, setLoading] = useState(true)
 
   useEffect(() => {
-    fetch('https://dummyjson.com/posts')
+    fetch('http://localhost:3000/blogs')
     .then(res => res.json())
     .then(json => {
-      setData(json.posts)
+      setData(json)
       setLoading(false)
     });
   }, [])
@@ -35,16 +35,13 @@ const Blogs = () => {
 
   return (
     <div className='max-w-[1280px] mx-auto px-4 lg:px-0 py-12'>
-      <Helmet>
-        <title>Blogs</title>
-      </Helmet>
       <form className='mb-10 flex justify-center' onSubmit={handleSearch}>
           <input className='w-full lg:w-1/2 shadow border p-4 border-gray-300 rounded-lg' type="search" placeholder='Search blogs' ref={inputRef} />
       </form>
-      <div className='flex flex-col gap-4 lg:flex-row lg:justify-center lg:flex-wrap'>
+      <div className='grid grid-cols-3 gap-3'>
         {loading && (
           Array(itemsPerPage).fill(0).map((item, index) => (
-            <div key={index} className='animate-pulse lg:w-[30%] bg-gray-300'>
+            <div key={index} className='animate-pulse bg-gray-300'>
               <div className="h-60 bg-gray-400"></div>
               <div className='mt-4 flex flex-col gap-2 p-4'>
                 <p className='h-6 mb-6 bg-gray-400 rounded-full'></p>
@@ -60,7 +57,7 @@ const Blogs = () => {
         )}
         {
           data && data.filter(item => search === '' ? item : item.title.toLowerCase().includes(search)).slice(itemsPerPage * (currentPage - 1), currentPage * itemsPerPage).map((item, i) => (
-            <BlogCard key={i} id={item.id} title={item.title} body={item.body} />
+            <BlogCard key={i} id={item.id} image={item.image} title={item.title} body={item.body} date={item.uploadedDate} />
           ))
         }
         {!loading && (data.filter(item => search === '' ? item : item.title.toLowerCase().includes(search)).length === 0 && <img src={DataNotFoundImg} alt="data-not-found" />)}

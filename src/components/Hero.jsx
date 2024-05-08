@@ -1,23 +1,42 @@
-import { EmblaCarousel } from './EmblaCarousel'
-import Button from '@mui/material/Button';
-import DownloadIcon from '@mui/icons-material/Download';
-import { useMediaQuery } from "@mui/material";
-import { useTheme } from '@mui/material/styles';
+import { FaFacebook, FaTwitter, FaYoutube } from 'react-icons/fa'
+import bioImg from '../assets/bio.jpg'
+import { Link } from 'react-router-dom'
 
 const Hero = () => {
-  const theme = useTheme();
   return (
-    <div className='max-w-[1280px] lg:h-screen mx-auto px-4 lg:px-0 pb-12 lg:grid grid-cols-2 items-center'>
-      <EmblaCarousel />
-      <div className='flex flex-col items-center lg:items-start gap-4'>
-        <h1 className='font-bold text-2xl md:text-4xl lg:text-7xl'>Speech Etiquette</h1>
-        <p className='lg:text-left text-justify pb-4'>The Public Speaking app is designed for all users who want to learn and practice English in order to speak fluently with people The application is Public speaking for beginners and advanced level students. You may have English speaking skills, but these English language skills will not help you when you want to speak in front of people. That's why you need to learn how to speak publicly, and you need to acquire public speaking skills. This public speaking app has revealed your inner fear of public speaking through many practical public speaking exercises</p>
-        <a href="https://api.citrusfiles.com/api/files/private_files/ksz8anlzqa7epql/speech_etiquette_gfGGk6dPLG.apk">
-
-        <Button size={useMediaQuery(theme.breakpoints.down('sm')) ? 'small' : 'large'} className='lg:self-start' variant="contained" endIcon={<DownloadIcon />}>Download our app</Button>
-        </a>
-      </div>
-    </div>
+    <section className='flex flex-col lg:flex-row justify-center items-center gap-[5rem] h-screen -mt-20'>
+        <div className='rounded-full overflow-hidden border size-[200px] md:size-[300px] lg:size-[400px]'>
+            <img src={bioImg} alt="Profile-image" />
+        </div>
+        <div className='font-bold flex flex-col gap-3 items-center'>
+            <p className=' text-center text-gray-500'>Hello, I'm</p>
+            <h1 className='text-5xl text-center'>Uteshova Zerne</h1>
+            <p className='text-gray-500 text-3xl text-center'>PhD, Docent</p>
+            <div className='flex gap-3 mt-2'>
+                <Link to='/my-projects' className='p-4 border-2 border-neutral-800 rounded-full text-neutral-800'>My Projects</Link>
+                <button className='p-4 border-2 border-neutral-800 rounded-full bg-neutral-800 text-white'>Contact Info</button>
+            </div>
+            <div>
+                <ul className='flex gap-4 mt-3'>
+                    <li>
+                        <a href="#">
+                            <FaFacebook size={25} />
+                        </a>
+                    </li>
+                    <li>
+                        <a href="#">
+                            <FaTwitter size={25} />
+                        </a>
+                    </li>
+                    <li>
+                        <a href="#">
+                            <FaYoutube size={25} />
+                        </a>
+                    </li>
+                </ul>
+            </div>
+        </div>
+    </section>
   )
 }
 

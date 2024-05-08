@@ -1,7 +1,6 @@
 import { useEffect, useState } from "react"
 import { IoClose, IoMenu } from "react-icons/io5"
 import { Link, useLocation } from "react-router-dom"
-import logoImg from '../assets/logo/se.png'
 
 const Navbar = () => {
     const [menu, setMenu] = useState(false)
@@ -27,9 +26,7 @@ const Navbar = () => {
     <nav className={color ? 'backdrop-blur-3xl sticky py-5 top-0 ease-in duration-300 bg-slate-50/30 z-10' : 'sticky py-5 top-0 z-10 ease-in duration-300'}>
         <div className='max-w-[1280px] mx-auto flex justify-between items-center px-4 lg:px-0'>
             <div className="logo">
-                <Link to='/'>
-                    <img src={logoImg} className="w-10" alt="logo" />
-                </Link>
+                <Link className="font-bold text-xl" to='/'>ZU</Link>
             </div>
             <ul className={location.pathname != '/' ? 'hidden' : 'hidden lg:flex gap-12 font-bold'}>
                 <li>

@@ -1,5 +1,4 @@
 import { useEffect, useState } from 'react'
-import { Helmet } from 'react-helmet';
 import { useParams } from 'react-router-dom'
 
 const Post = () => {
@@ -12,9 +11,6 @@ const Post = () => {
       })
   return (
     <div className='max-w-[768px] mx-auto p-4 lg:p-0 lg:py-12'>
-        <Helmet>
-          <title>{data.title}</title>
-        </Helmet>
         <div className='w-full border'>
             <img src={`https://picsum.photos/300/200?random=${id}`} alt="thumbnail" className='w-full' />
         </div>

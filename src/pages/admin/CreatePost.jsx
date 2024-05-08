@@ -1,20 +1,22 @@
-import { useEffect, useRef, useState } from "react";
+import { useRef, useState } from "react";
 import ReactQuill from "react-quill";
 import EditorToolbar, { modules, formats } from "../../components/admin/QuillToolbar";
 import "react-quill/dist/quill.snow.css";
 import { MdImage } from "react-icons/md";
 import { useForm } from "react-hook-form";
 import toast, { Toaster } from "react-hot-toast";
-import { Helmet } from "react-helmet";
+import { useNavigate } from "react-router-dom";
 
-export const Editor = () => {
+export const CreatePost = () => {
   const [image, setImage] = useState('')
   const [post, setPost] = useState({ value: '' });
   const { handleSubmit } = useForm()
   const maxImgSizeMb = 2;
   const fileInput = useRef()
+  const title = useRef()
   const editorInput = window.document.querySelector('.ql-container')
-  
+  const token = window.localStorage.getItem('token')
+  const navigate = useNavigate()
   
   const handleChange = value => {
     setPost({ value });
@@ -44,15 +46,30 @@ export const Editor = () => {
         toast.error('A post must be written!')
         editorInput.style.borderColor = 'red'
     } else {
-      toast.success('Success!')
+      const fetchData = async () => {
+        toast('Please wait...')
+        const data = new FormData()
+        data.set('title', title.current.value)
+        data.set('body', post.value)
+        data.set('image', image)
+        const res = await fetch('https://uteshova-zernegul.uz/api/blog/create', {
+              method: 'POST',
+              headers: {
+                'Authorization': `Bearer ${token}`
+              },
+              body: data,
+          });
+  
+          if (res.ok) {
+            navigate('/admin')
+          }
+      }
+      fetchData()
     }
   };
 
   return (
     <>
-      <Helmet>
-          <title>Editor</title>
-      </Helmet>
       <form className="mx-auto p-4 lg:px-0 lg:py-10 flex flex-col gap-4" onSubmit={handleSubmit(onSubmit)}>
         {image ? (
           <div className='relative h-96 group/item border'>
@@ -78,7 +95,7 @@ export const Editor = () => {
         )}
         <div>
           <label htmlFor="title" className='block mb-2 text-sm font-medium text-gray-900'>Post title</label>
-          <input type="text" id='title' name='title' className='border border-gray-300 rounded-lg p-2.5 text-gray-900 w-full' required />
+          <input ref={title} type="text" id='title' name='title' className='border border-gray-300 rounded-lg p-2.5 text-gray-900 w-full' required />
         </div>
         <div>
           <EditorToolbar />
@@ -99,4 +116,4 @@ export const Editor = () => {
   );
 };
 
-export default Editor;
+export default CreatePost

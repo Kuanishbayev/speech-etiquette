@@ -1,17 +1,14 @@
 import { Pagination } from '@mui/material';
 import { useEffect, useRef, useState } from 'react'
 import BlogCard from '../../components/admin/BlogCard';
-import { Link } from 'react-router-dom';
+import { Link, useNavigate } from 'react-router-dom';
 import { CiSearch } from 'react-icons/ci';
-import Modal from '../../components/admin/Modal';
-import { IoTrashOutline } from 'react-icons/io5';
 import { MdDelete, MdModeEdit } from 'react-icons/md';
-import toast, { Toaster } from 'react-hot-toast'
 import DataNotFoundImg from '../../assets/data-not-found.jpg'
-import { Helmet } from 'react-helmet';
+import toast, { Toaster } from 'react-hot-toast';
+
 
 const BlogsManager = () => {
-  const [open, setOpen] = useState(false)
   const [data, setData]  = useState([]);
   const [currentPage, setCurrentPage] = useState(1);
   const [pageQty, setPageQty] = useState();
@@ -19,15 +16,18 @@ const BlogsManager = () => {
   const [search, setSearch] = useState('')
   const inputRef = useRef()
   const [loading, setLoading] = useState(true)
+  const token = window.localStorage.getItem('token')
+  const navigate = useNavigate()
+  const [refreshData, setRefreshData] = useState(false)
 
   useEffect(() => {
-    fetch('https://dummyjson.com/posts')
+    fetch('https://uteshova-zernegul.uz/api/blogs/active')
     .then(res => res.json())
     .then(json => {
-      setData(json.posts)
+      setData(json.data.news)
       setLoading(false)
     });
-  }, [])
+  }, [refreshData])
   
   const handleSearch = (e) => {
     e.preventDefault()
@@ -39,11 +39,30 @@ const BlogsManager = () => {
     setPageQty(Math.ceil(data.filter(item => search === '' ? item : item.title.toLowerCase().includes(search)).length / itemsPerPage))
   }, [search, data]);
 
+  const handleDelete = async (id) => {
+    toast('Please wait...')
+    if (confirm('Are you sure you want to delete this item?')) {
+      const response = await fetch(`https://uteshova-zernegul.uz/api/blog/delete/${id}`, {
+        method: 'DELETE',
+        headers: {
+          'Content-Type': 'application/json',
+          'Authorization': `Bearer ${token}`
+        }
+      });
+      
+      if (response.ok) {
+        setRefreshData(prev => !prev)
+      }
+    }
+  }
+
+  const handleEdit = (id) => {
+    navigate(`edit-post/${id}`)
+  }
+
   return (
     <div className='grow pt-12'>
-      <Helmet>
-        <title>Blogs manager</title>
-      </Helmet>
+      <Toaster />
       <div className='max-w-[90%] mx-auto'>
         <div className='flex justify-between items-center lg:items-stretch mb-10'>
           <form className='flex gap-2' onSubmit={handleSearch}>
@@ -56,7 +75,7 @@ const BlogsManager = () => {
           </Link>
         </div>
         <div className='flex flex-col lg:flex-row gap-4 lg:justify-between'>
-          {loading && (
+          {data.length !== 0 ? loading && (
             Array(itemsPerPage).fill(0).map((item, index) => (
               <div key={index} className='animate-pulse lg:w-[30%] bg-gray-300'>
                 <div className="h-60 bg-gray-400"></div>
@@ -71,15 +90,15 @@ const BlogsManager = () => {
                 </div>
               </div>
             ))
-          )}
+          ) : <div className='text-center w-full text-red-600'>No information found in the database.</div>}
           {
             data && data.filter(item => search === '' ? item : item.title.toLowerCase().includes(search)).slice(itemsPerPage * (currentPage - 1), currentPage * itemsPerPage).map((item, i) => (
-              <BlogCard key={i} id={item.id} title={item.title} body={item.body}>
+              <BlogCard key={i} id={item.id} image={item.image} title={item.title} body={item.body} uploadedDate={item.created_at}>
                 <div className="lg:hidden lg:group-hover/item:flex flex absolute top-2 md:top-4 lg:top-2 right-2 md:right-4 lg:right-2 gap-2 md:gap-4 lg:gap-2">
-                  <button className="bg-white p-2 rounded-md shadow-md" title='Edit'>
+                  <button className="bg-white p-2 rounded-md shadow-md" title='Edit' onClick={() => handleEdit(item.id)}>
                     <MdModeEdit className='size-5 md:size-10 lg:size-fit' />
                   </button>
-                  <button className="bg-white p-2 rounded-md shadow-md" onClick={() => setOpen(true)}>
+                  <button className="bg-white p-2 rounded-md shadow-md" onClick={() => handleDelete(item.id)}>
                     <MdDelete className='size-5 md:size-10 lg:size-fit' />
                   </button>
                 </div>
@@ -91,23 +110,6 @@ const BlogsManager = () => {
         <div className="flex justify-center pt-4 mb-20">
           <Pagination count={pageQty} onChange={(_, num) => setCurrentPage(num)} showFirstButton showLastButton />
         </div>
-        <Modal open={open} onClose={() => setOpen(false)}>
-          <div className='text-center w-56'>
-            <IoTrashOutline size={56} className='mx-auto text-red-500' />
-            <div className='mx-auto my-4 w-48'>
-              <h3 className='text-lg font-black text-gray-800'>Confirm Delete</h3>
-              <p className='text-sm text-gray-500'>
-                Are you sure you want to delete this item?
-              </p>
-            </div>
-            <div className='flex gap-4'>
-              <button className='font-bold py-2 rounded-md text-white shadow-md bg-red-500 w-full' onClick={() => toast.success('It is a toast.')}>Delete</button>
-              <button className='font-bold py-2 rounded-md text-stone-400 shadow-md w-full' onClick={() => setOpen(false)}>Cancel</button>
-            </div>
-          </div>
-        </Modal>
-
-        <Toaster />
       </div>
     </div>
   )
