@@ -4,7 +4,7 @@ import { Link } from 'react-router-dom'
 
 const Hero = () => {
   return (
-    <section className='flex flex-col lg:flex-row justify-center items-center gap-[5rem] h-screen -mt-20'>
+    <section className='flex flex-col lg:flex-row justify-center items-center gap-[5rem] h-screen lg:-mt-20'>
         <div className='rounded-full overflow-hidden border size-[200px] md:size-[300px] lg:size-[400px]'>
             <img src={bioImg} alt="Profile-image" />
         </div>
