@@ -37,7 +37,7 @@ const Blogs = () => {
       <form className='mb-10 flex justify-center' onSubmit={handleSearch}>
           <input className='w-full lg:w-1/2 shadow border p-4 border-gray-300 rounded-lg' type="search" placeholder='Search blogs' ref={inputRef} />
       </form>
-      <div className='grid grid-cols-3 gap-3'>
+      <div className='grid lg:grid-cols-3 gap-3'>
         {loading && (
           Array(itemsPerPage).fill(0).map((item, index) => (
             <div key={index} className='animate-pulse bg-gray-300'>
