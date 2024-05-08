@@ -2,20 +2,20 @@ import { useEffect, useState } from 'react'
 import { useParams } from 'react-router-dom'
 
 const Post = () => {
-    const [data, setData]  = useState([]);
+    const [data, setData]  = useState(null);
     let {id} = useParams()
     useEffect(() => {
-        fetch('https://dummyjson.com/posts/' + id)
+        fetch('https://uteshova-zernegul.uz/api/blog/' + id)
         .then(res => res.json())
-        .then(setData);
+        .then(json => setData(json.blog));
       })
   return (
     <div className='max-w-[768px] mx-auto p-4 lg:p-0 lg:py-12'>
         <div className='w-full border'>
-            <img src={`https://picsum.photos/300/200?random=${id}`} alt="thumbnail" className='w-full' />
+            <img src={data && data.image} alt="thumbnail" className='w-full' />
         </div>
-        <p className='font-bold pt-4 md:text-xl lg:text-3xl'>{data.title}</p>
-        <p className='md:text-lg lg:text-xl pt-2'>{data.body}</p>
+        <p className='font-bold pt-4 md:text-xl lg:text-3xl'>{data && data.title}</p>
+        <div className='line-clamp-5' dangerouslySetInnerHTML={{__html:data && data.body}} />
     </div>
   )
 }

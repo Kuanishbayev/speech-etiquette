@@ -40,8 +40,8 @@ const BlogsManager = () => {
   }, [search, data]);
 
   const handleDelete = async (id) => {
-    toast('Please wait...')
     if (confirm('Are you sure you want to delete this item?')) {
+      toast('Please wait...')
       const response = await fetch(`https://uteshova-zernegul.uz/api/blog/delete/${id}`, {
         method: 'DELETE',
         headers: {

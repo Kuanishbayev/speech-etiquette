@@ -11,8 +11,8 @@ const BlogCard = ({id, image, title, body, date}) => {
         </div>
         <div className="content">
           <p className='group-hover/item:text-indigo-800 transition ease-in-out duration-150 font-bold pb-6 pt-2 md:text-xl lg:text-lg line-clamp-2'>{title}</p>
-          {body && <p className='line-clamp-3'>{body}</p>}
-          {date && <p className='lg:pt-2 flex items-center gap-2 justify-end text-gray-500'><LuCalendar />02.04.2024</p>}
+          {body && <div className='line-clamp-5' dangerouslySetInnerHTML={{__html:body}} />}
+          {date && <p className='lg:pt-2 flex items-center gap-2 justify-end text-gray-500'><LuCalendar />{uploadedDate.split('T')[0].replaceAll('-', '.').split('.').reverse().join('.')}</p>}
         </div>
       </Link>
     </div>

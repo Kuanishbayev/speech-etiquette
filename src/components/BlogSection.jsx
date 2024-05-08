@@ -8,10 +8,10 @@ const Blogs = () => {
   const [loading, setLoading] = useState(true)
 
   useEffect(() => {
-    fetch('http://localhost:3000/blogs')
+    fetch('https://uteshova-zernegul.uz/api/blogs/active')
     .then(res => res.json())
     .then(json => {
-      setData(json)
+      setData(json.data.news)
       setLoading(false)
     });
   }, [])
@@ -43,7 +43,7 @@ const Blogs = () => {
           )}
         {
           data && data.slice(0, 1).map((item, i) => (
-            <BlogCard key={i} id={item.id} image={item.image} title={item.title} body={item.body} />
+            <BlogCard key={i} id={item.id} image={item.image} title={item.title} body={item.body} uploadedDate={item.created_at} />
           ))
         }
         <div className='grid lg:grid-cols-2 grid-rows-2 gap-4'>

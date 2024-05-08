@@ -1,8 +1,6 @@
 import { NavLink, useLocation, useNavigate } from 'react-router-dom'
-import { MdOutlineAdminPanelSettings } from 'react-icons/md'
 import { RiDashboard3Line } from 'react-icons/ri'
 import { IoNewspaperOutline } from 'react-icons/io5'
-import { GoTrash } from 'react-icons/go'
 import { ImExit } from 'react-icons/im'
 
 const Sidebar = () => {

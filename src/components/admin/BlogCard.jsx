@@ -2,7 +2,6 @@ import { LuCalendar } from "react-icons/lu"
 
 
 const BlogCard = ({id, image, title, body, uploadedDate, children}) => {
-  // uploadedDate = new Date(uploadedDate)
   return (
     <div className="border border-transparent lg:hover:border-gray-400 group/item relative lg:max-w-[30%]">
       <div className="img">

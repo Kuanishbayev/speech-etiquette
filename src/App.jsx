@@ -10,6 +10,7 @@ import RootLayout from "./layout/RootLayout"
 import BlogsManager from "./pages/admin/BlogsManager"
 import MyProjects from "./pages/MyProjects"
 import CreatePost from "./pages/admin/CreatePost"
+import EditPost from "./pages/admin/EditPost"
 
 
 function App() {

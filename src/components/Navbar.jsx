@@ -33,9 +33,6 @@ const Navbar = () => {
                     <a href="#">Home</a>
                 </li>
                 <li>
-                    <a href="#about-me">About Me</a>
-                </li>
-                <li>
                     <a href="#blogs">Blogs</a>
                 </li>
                 <li>
@@ -48,9 +45,6 @@ const Navbar = () => {
             <ul className={menu ? 'ease-in-out duration-200 font-bold flex flex-col gap-4 items-center justify-center py-10 absolute top-full right-0 bg-sky-500/95 w-full' : 'hidden'} onClick={() => setMenu(false)}>
                 <li>
                     <a href="#">Home</a>
-                </li>
-                <li>
-                    <a href="#about-me">About Me</a>
                 </li>
                 <li>
                     <a href="#blogs">Blogs</a>

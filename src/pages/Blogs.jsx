@@ -2,7 +2,6 @@ import { useEffect, useRef, useState } from 'react'
 import BlogCard from '../components/BlogCard'
 import { Pagination } from "@mui/material"
 import DataNotFoundImg from '../assets/data-not-found.jpg'
-import { Helmet } from 'react-helmet'
 
 const Blogs = () => {
   const [data, setData]  = useState([]);
@@ -14,10 +13,10 @@ const Blogs = () => {
   const [loading, setLoading] = useState(true)
 
   useEffect(() => {
-    fetch('http://localhost:3000/blogs')
+    fetch('https://uteshova-zernegul.uz/api/blogs/active')
     .then(res => res.json())
     .then(json => {
-      setData(json)
+      setData(json.data.news)
       setLoading(false)
     });
   }, [])
