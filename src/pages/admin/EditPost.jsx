@@ -70,7 +70,6 @@ export const EditPost = () => {
         const res = await fetch(`https://speech.orfo-qareken.uz/api/blog/update/${id}?_method=put`, {
               method: 'POST',
               headers: {
-                'Content-Type': 'multipart/form-data',
                 'Authorization': `Bearer ${token}`
               },
               body: data
