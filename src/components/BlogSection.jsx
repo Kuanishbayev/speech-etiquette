@@ -8,7 +8,7 @@ const Blogs = () => {
   const [loading, setLoading] = useState(true)
 
   useEffect(() => {
-    fetch('https://uteshova-zernegul.uz/api/blogs/active')
+    fetch('https://speech.orfo-qareken.uz/api/blogs/active')
     .then(res => res.json())
     .then(json => {
       setData(json.data.news)
