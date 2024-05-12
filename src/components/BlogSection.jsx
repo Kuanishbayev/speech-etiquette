@@ -43,7 +43,7 @@ const Blogs = () => {
           )}
         {
           data && data.slice(0, 1).map((item, i) => (
-            <BlogCard key={i} id={item.id} image={item.image} title={item.title} body={item.body} uploadedDate={item.created_at} />
+            <BlogCard key={i} id={item.id} image={item.image} title={item.title} body={item.body} />
           ))
         }
         <div className='grid lg:grid-cols-2 grid-rows-2 gap-4'>
