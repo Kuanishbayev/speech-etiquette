@@ -5,7 +5,7 @@ const Post = () => {
     const [data, setData]  = useState(null);
     let {id} = useParams()
     useEffect(() => {
-        fetch('https://uteshova-zernegul.uz/api/blog/' + id)
+        fetch('https://speech.orfo-qareken.uz/api/blog/' + id)
         .then(res => res.json())
         .then(json => setData(json.blog));
       }, [])

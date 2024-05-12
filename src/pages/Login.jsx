@@ -8,7 +8,7 @@ const Login = () => {
 
   const onSubmit = async (data) => {
     toast('Please wait...')
-    const res = await fetch('https://uteshova-zernegul.uz/api/login', {
+    const res = await fetch('https://speech.orfo-qareken.uz/api/login', {
             method: 'POST',
             headers: {
                 'Content-Type': 'application/json'
