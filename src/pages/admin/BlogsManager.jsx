@@ -21,7 +21,7 @@ const BlogsManager = () => {
   const [refreshData, setRefreshData] = useState(false)
 
   useEffect(() => {
-    fetch('https://uteshova-zernegul.uz/api/blogs/active')
+    fetch('https://speech.orfo-qareken.uz/api/blogs/active')
     .then(res => res.json())
     .then(json => {
       setData(json.data.news)
@@ -42,7 +42,7 @@ const BlogsManager = () => {
   const handleDelete = async (id) => {
     if (confirm('Are you sure you want to delete this item?')) {
       toast('Please wait...')
-      const response = await fetch(`https://uteshova-zernegul.uz/api/blog/delete/${id}`, {
+      const response = await fetch(`https://speech.orfo-qareken.uz/api/blog/delete/${id}`, {
         method: 'DELETE',
         headers: {
           'Content-Type': 'application/json',

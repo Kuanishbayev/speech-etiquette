@@ -52,7 +52,7 @@ export const CreatePost = () => {
         data.set('title', title.current.value)
         data.set('body', post.value)
         data.set('image', image)
-        const res = await fetch('https://uteshova-zernegul.uz/api/blog/create', {
+        const res = await fetch('https://speech.orfo-qareken.uz/api/blog/create', {
               method: 'POST',
               headers: {
                 'Authorization': `Bearer ${token}`

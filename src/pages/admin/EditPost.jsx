@@ -21,7 +21,7 @@ export const EditPost = () => {
   const [imageFile, setImageFile] = useState()
 
   useEffect(() => {
-    fetch(`https://uteshova-zernegul.uz/api/blog/${id}`)
+    fetch(`https://speech.orfo-qareken.uz/api/blog/${id}`)
     .then(res => res.json())
     .then(json => {
       title.current.value = json.blog.title
@@ -67,7 +67,7 @@ export const EditPost = () => {
         data.set('title', title.current.value)
         data.set('body', post.value)
         data.set('image', imageFile)
-        const res = await fetch(`https://uteshova-zernegul.uz/api/blog/update/${id}?_method=put`, {
+        const res = await fetch(`https://speech.orfo-qareken.uz/api/blog/update/${id}?_method=put`, {
               method: 'POST',
               headers: {
                 'Content-Type': 'multipart/form-data',
