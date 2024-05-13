@@ -87,7 +87,7 @@ export const EditPost = () => {
 
   return (
     <>
-      <form className="mx-auto p-4 lg:px-0 lg:py-10 flex flex-col gap-4" onSubmit={handleSubmit(onSubmit)}>
+      <form className="mx-auto p-4 lg:px-12 lg:py-10 flex flex-col gap-4" onSubmit={handleSubmit(onSubmit)}>
         <div className='relative h-96 group/item border'>
           <img src={image} alt="thumbnail" className="mx-auto object-contain h-full" />
             <label htmlFor="dropzone-file" className="absolute top-0 size-full invisible group-hover/item:visible flex flex-col items-center justify-center bg-gray-700/50 backdrop-blur-sm cursor-pointer border-2 border-gray-500 border-dashed rounded-lg bg-gray-50">

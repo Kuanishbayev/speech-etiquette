@@ -23,6 +23,12 @@ const Sidebar = () => {
       <nav className='grow flex flex-col justify-between'>
         <ul className='flex flex-col gap-4'>
           <li>
+            <Link to='/admin' className='flex items-center gap-2 text-white hover:bg-gray-500 rounded-lg p-2'>
+              <IoNewspaperOutline size={25} />
+              <span className='font-bold'>Blogs</span>
+            </Link>
+          </li>
+          <li>
             <Link to='/' className='flex items-center gap-2 text-white hover:bg-gray-500 rounded-lg p-2'>
               <FaHome size={25} />
               <span className='font-bold'>Back to Home Page</span>

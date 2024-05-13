@@ -71,7 +71,7 @@ export const CreatePost = () => {
 
   return (
     <>
-      <form className="mx-auto p-4 lg:px-0 lg:py-10 flex flex-col gap-4" onSubmit={handleSubmit(onSubmit)}>
+      <form className="mx-auto p-4 lg:px-12 lg:py-10 flex flex-col gap-4" onSubmit={handleSubmit(onSubmit)}>
         {image ? (
           <div className='relative h-96 group/item border'>
             <img src={URL.createObjectURL(image)} alt="thumbnail" className="mx-auto object-contain h-full" />

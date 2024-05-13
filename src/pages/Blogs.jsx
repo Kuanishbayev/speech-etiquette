@@ -14,7 +14,7 @@ const Blogs = () => {
   const [loading, setLoading] = useState(true)
 
   useEffect(() => {
-    fetch(`${url}/api/blogs/active`)
+    fetch(`${url}/api/blogs/active?per_page=1000`)
     .then(res => res.json())
     .then(json => {
       setData(json.data.news)
