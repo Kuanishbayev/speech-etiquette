@@ -1,7 +1,8 @@
-import { NavLink, useLocation, useNavigate } from 'react-router-dom'
+import { Link, useLocation, useNavigate } from 'react-router-dom'
 import { RiDashboard3Line } from 'react-icons/ri'
 import { IoNewspaperOutline } from 'react-icons/io5'
 import { ImExit } from 'react-icons/im'
+import { FaHome } from 'react-icons/fa'
 
 const Sidebar = () => {
   const location = useLocation()
@@ -21,11 +22,11 @@ const Sidebar = () => {
 
       <nav className='grow flex flex-col justify-between'>
         <ul className='flex flex-col gap-4'>
-          <li className={'hover:bg-gray-500 rounded-lg ' + (location.pathname === '/admin' && 'bg-gray-500')}>
-            <NavLink to='/admin' className='flex items-center gap-2 text-white hover:bg-gray-500 rounded-lg p-2'>
-              <IoNewspaperOutline size={25} />
-              <span className='font-bold'>Blogs</span>
-            </NavLink>
+          <li>
+            <Link to='/' className='flex items-center gap-2 text-white hover:bg-gray-500 rounded-lg p-2'>
+              <FaHome size={25} />
+              <span className='font-bold'>Back to Home Page</span>
+            </Link>
           </li>
         </ul>
 
