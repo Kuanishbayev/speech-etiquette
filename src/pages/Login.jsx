@@ -11,7 +11,7 @@ const Login = () => {
     const res = await fetch('https://speech.orfo-qareken.uz/api/login', {
             method: 'POST',
             headers: {
-                'Content-Type': 'application/json'
+              'Authorization': `Bearer ${token}`
             },
             body: JSON.stringify({
               'email': data.email,
