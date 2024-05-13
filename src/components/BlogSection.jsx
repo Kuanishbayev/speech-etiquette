@@ -2,13 +2,14 @@ import { useEffect, useState } from 'react'
 import { FaArrowRight, FaCircleDot } from 'react-icons/fa6'
 import { Link } from 'react-router-dom'
 import BlogCard from './BlogCard'
+import { url } from '../utils/Url'
 
 const Blogs = () => {
   const [data, setData]  = useState([])
   const [loading, setLoading] = useState(true)
 
   useEffect(() => {
-    fetch('https://speech.orfo-qareken.uz/api/blogs/active')
+    fetch(`${url}/api/blogs/active`)
     .then(res => res.json())
     .then(json => {
       setData(json.data.news)

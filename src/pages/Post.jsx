@@ -1,11 +1,12 @@
 import { useEffect, useState } from 'react'
 import { useParams } from 'react-router-dom'
+import { url } from '../utils/Url';
 
 const Post = () => {
     const [data, setData]  = useState(null);
     let {id} = useParams()
     useEffect(() => {
-        fetch('https://speech.orfo-qareken.uz/api/blog/' + id)
+        fetch(`${url}/api/blog/${id}`)
         .then(res => res.json())
         .then(json => setData(json.blog));
       }, [])

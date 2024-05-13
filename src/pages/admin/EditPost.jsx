@@ -6,6 +6,7 @@ import { MdImage } from "react-icons/md";
 import { useForm } from "react-hook-form";
 import toast, { Toaster } from "react-hot-toast";
 import { useNavigate, useParams } from "react-router-dom";
+import { url } from "../../utils/Url";
 
 export const EditPost = () => {
   const [image, setImage] = useState('')
@@ -21,7 +22,7 @@ export const EditPost = () => {
   const [imageFile, setImageFile] = useState()
 
   useEffect(() => {
-    fetch(`https://speech.orfo-qareken.uz/api/blog/${id}`)
+    fetch(`${url}/api/blog/${id}`)
     .then(res => res.json())
     .then(json => {
       title.current.value = json.blog.title
@@ -67,7 +68,7 @@ export const EditPost = () => {
         data.set('title', title.current.value)
         data.set('body', post.value)
         data.set('image', imageFile)
-        const res = await fetch(`https://speech.orfo-qareken.uz/api/blog/update/${id}?_method=put`, {
+        const res = await fetch(`${url}/api/blog/update/${id}?_method=put`, {
               method: 'POST',
               headers: {
                 'Authorization': `Bearer ${token}`

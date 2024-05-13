@@ -1,6 +1,7 @@
 import { useForm } from 'react-hook-form'
 import { useNavigate } from "react-router-dom"
 import toast, { Toaster } from 'react-hot-toast';
+import { url } from '../utils/Url';
 
 const Login = () => {
   const { register, handleSubmit } = useForm()
@@ -8,7 +9,7 @@ const Login = () => {
 
   const onSubmit = async (data) => {
     toast('Please wait...')
-    const res = await fetch('https://speech.orfo-qareken.uz/api/login', {
+    const res = await fetch(`${url}/api/login`, {
             method: 'POST',
             headers: {
                 'Content-Type': 'application/json',

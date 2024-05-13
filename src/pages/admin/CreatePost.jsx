@@ -6,6 +6,7 @@ import { MdImage } from "react-icons/md";
 import { useForm } from "react-hook-form";
 import toast, { Toaster } from "react-hot-toast";
 import { useNavigate } from "react-router-dom";
+import { url } from "../../utils/Url";
 
 export const CreatePost = () => {
   const [image, setImage] = useState('')
@@ -52,7 +53,7 @@ export const CreatePost = () => {
         data.set('title', title.current.value)
         data.set('body', post.value)
         data.set('image', image)
-        const res = await fetch('https://speech.orfo-qareken.uz/api/blog/create', {
+        const res = await fetch(`${url}/api/blog/create`, {
               method: 'POST',
               headers: {
                 'Authorization': `Bearer ${token}`

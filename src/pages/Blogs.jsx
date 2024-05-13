@@ -2,6 +2,7 @@ import { useEffect, useRef, useState } from 'react'
 import BlogCard from '../components/BlogCard'
 import { Pagination } from "@mui/material"
 import DataNotFoundImg from '../assets/data-not-found.jpg'
+import { url } from '../utils/Url'
 
 const Blogs = () => {
   const [data, setData]  = useState([]);
@@ -13,7 +14,7 @@ const Blogs = () => {
   const [loading, setLoading] = useState(true)
 
   useEffect(() => {
-    fetch('https://speech.orfo-qareken.uz/api/blogs/active')
+    fetch(`${url}/api/blogs/active`)
     .then(res => res.json())
     .then(json => {
       setData(json.data.news)
