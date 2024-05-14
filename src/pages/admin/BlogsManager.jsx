@@ -94,7 +94,7 @@ const BlogsManager = () => {
           ) : <div className='text-center w-full text-red-600'>No information found in the database.</div>}
           {
             data && data.filter(item => search === '' ? item : item.title.toLowerCase().includes(search)).slice(itemsPerPage * (currentPage - 1), currentPage * itemsPerPage).map((item, i) => (
-              <BlogCard key={i} id={item.id} image={item.image} title={item.title} body={item.body} uploadedDate={item.created_at}>
+              <BlogCard key={i} image={item.image} title={item.title} body={item.body} uploadedDate={item.created_at}>
                 <div className="lg:hidden lg:group-hover/item:flex flex absolute top-2 md:top-4 lg:top-2 right-2 md:right-4 lg:right-2 gap-2 md:gap-4 lg:gap-2">
                   <button className="bg-white p-2 rounded-md shadow-md" title='Edit' onClick={() => handleEdit(item.id)}>
                     <MdModeEdit className='size-5 md:size-10 lg:size-fit' />

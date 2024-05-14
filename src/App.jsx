@@ -11,6 +11,7 @@ import BlogsManager from "./pages/admin/BlogsManager"
 import MyProjects from "./pages/MyProjects"
 import CreatePost from "./pages/admin/CreatePost"
 import EditPost from "./pages/admin/EditPost"
+import AboutMe from "./pages/AboutMe"
 
 
 function App() {
@@ -23,6 +24,7 @@ function App() {
           <Route path="post/:id" element={<Post />} />
           <Route path="login" element={<Login />} />
           <Route path="my-projects" element={<MyProjects />} />
+          <Route path="about-me" element={<AboutMe />} />
         </Route>
 
         <Route path="admin" element={<AdminLayout />}>

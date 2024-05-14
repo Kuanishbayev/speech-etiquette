@@ -13,8 +13,8 @@ const Hero = () => {
             <h1 className='text-5xl text-center'>Uteshova Zerne</h1>
             <p className='text-gray-500 text-3xl text-center'>PhD, Docent</p>
             <div className='flex gap-3 mt-2'>
-                <Link to='/my-projects' className='p-4 border-2 border-neutral-800 rounded-full text-neutral-800'>My Projects</Link>
-                <button className='p-4 border-2 border-neutral-800 rounded-full bg-neutral-800 text-white'>Contact Info</button>
+                <Link to='my-projects' className='p-4 border-2 border-neutral-800 rounded-full text-neutral-800'>My Projects</Link>
+                <Link to='about-me' className='p-4 border-2 border-neutral-800 rounded-full bg-neutral-800 text-white'>About Me</Link>
             </div>
             <div>
                 <ul className='flex gap-4 mt-3'>

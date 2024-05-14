@@ -57,7 +57,7 @@ const Blogs = () => {
         )}
         {
           data && data.filter(item => search === '' ? item : item.title.toLowerCase().includes(search)).slice(itemsPerPage * (currentPage - 1), currentPage * itemsPerPage).map((item, i) => (
-            <BlogCard key={i} id={item.id} image={item.image} title={item.title} body={item.body} date={item.uploadedDate} />
+            <BlogCard key={i} id={item.id} image={item.image} title={item.title} body={item.body} uploadedDate={item.created_at} />
           ))
         }
         {!loading && (data.filter(item => search === '' ? item : item.title.toLowerCase().includes(search)).length === 0 && <img src={DataNotFoundImg} alt="data-not-found" />)}
