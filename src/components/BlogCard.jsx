@@ -6,8 +6,8 @@ const BlogCard = ({id, image, title, body, uploadedDate}) => {
   return (
     <div className="group/item">
       <Link to={`/post/${id}`}>
-        <div className="img">
-          <img className='object-contain w-full' src={image} alt="thumbnail" />
+        <div className="h-60">
+          <img className="h-full object-contain mx-auto" src={image} alt="thumbnail" />
         </div>
         <div className="content">
           <p className='group-hover/item:text-indigo-800 transition ease-in-out duration-150 font-bold pb-6 pt-2 md:text-xl lg:text-lg line-clamp-2'>{title}</p>
