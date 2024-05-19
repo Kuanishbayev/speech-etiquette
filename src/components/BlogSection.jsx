@@ -1,23 +1,14 @@
-import { useEffect, useState } from 'react'
 import { FaArrowRight, FaCircleDot } from 'react-icons/fa6'
 import { Link } from 'react-router-dom'
 import BlogCard from './BlogCard'
 import { url } from '../utils/Url'
+import useSWR from 'swr'
+import { fetcher } from '../helpers/fetcher'
 
 const Blogs = () => {
-  const [data, setData]  = useState([])
-  const [loading, setLoading] = useState(true)
+  const {data, isLoading} = useSWR(`${url}/api/blogs/active`, fetcher)
 
-  useEffect(() => {
-    fetch(`${url}/api/blogs/active`)
-    .then(res => res.json())
-    .then(json => {
-      setData(json.data.news)
-      setLoading(false)
-    });
-  }, [])
   return (
-
     <div id='blogs' className='max-w-[1280px] mx-auto px-4 lg:px-0 py-12'>
       <ul className='flex justify-between mb-4'>
         <li className='font-bold text-xl flex items-center gap-2'><FaCircleDot className='fill-indigo-700' />Blogs</li>
@@ -28,7 +19,7 @@ const Blogs = () => {
         </li>
       </ul>
       <div className='grid lg:grid-cols-2 gap-4'>
-        {loading && (
+        {isLoading && (
             <div className='animate-pulse bg-gray-300'>
               <div className="h-60 bg-gray-400"></div>
               <div className='mt-4 flex flex-col gap-2 p-4'>
@@ -48,7 +39,7 @@ const Blogs = () => {
           ))
         }
         <div className='grid lg:grid-cols-2 grid-rows-2 gap-4'>
-        {loading && (
+        {isLoading && (
             Array(4).fill(0).map((item, index) => (
               <div key={index} className='animate-pulse bg-gray-300'>
                 <div className="h-60 bg-gray-400"></div>
@@ -70,8 +61,6 @@ const Blogs = () => {
             ))
           }
         </div>
-      
-        
       </div>
     </div>
   )

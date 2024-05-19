@@ -1,1 +1,1 @@
-export const fetcher = url => fetch(url).then(r => r.json())
+export const fetcher = url => fetch(url).then(r => r.json()).then(json => json.data.news)
