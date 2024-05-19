@@ -78,7 +78,7 @@ const BlogsManager = () => {
         <div className='flex flex-col lg:flex-row gap-4 lg:justify-between'>
           {data.length !== 0 ? loading && (
             Array(itemsPerPage).fill(0).map((item, index) => (
-              <div key={index} className='animate-pulse lg:w-[30%] bg-gray-300'>
+              <div key={index} className='animate-pulse lg:w-[30%]'>
                 <div className="h-60 bg-gray-400"></div>
                 <div className='mt-4 flex flex-col gap-2 p-4'>
                   <p className='h-6 mb-6 bg-gray-400 rounded-full'></p>

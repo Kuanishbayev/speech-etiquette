@@ -20,7 +20,7 @@ const Blogs = () => {
       </ul>
       <div className='grid lg:grid-cols-2 gap-4'>
         {isLoading && (
-            <div className='animate-pulse bg-gray-300'>
+            <div className='animate-pulse'>
               <div className="h-60 bg-gray-400"></div>
               <div className='mt-4 flex flex-col gap-2 p-4'>
                 <p className='h-6 mb-6 bg-gray-400 rounded-full'></p>
@@ -41,7 +41,7 @@ const Blogs = () => {
         <div className='grid lg:grid-cols-2 grid-rows-2 gap-4'>
         {isLoading && (
             Array(4).fill(0).map((item, index) => (
-              <div key={index} className='animate-pulse bg-gray-300'>
+              <div key={index} className='animate-pulse'>
                 <div className="h-60 bg-gray-400"></div>
                 <div className='mt-4 flex flex-col gap-2 p-4'>
                   <p className='h-6 mb-6 bg-gray-400 rounded-full'></p>
