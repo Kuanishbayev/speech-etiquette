@@ -4,7 +4,7 @@ import { LuCalendar } from "react-icons/lu"
 const BlogCard = ({image, title, body, uploadedDate, children}) => {
   return (
     <div className="group/item relative lg:max-w-[30%]">
-      <div className="h-60">
+      <div className="h-min">
           <img className="h-full object-contain mx-auto" src={image} alt="thumbnail" />
       </div>
       <div className="content">
