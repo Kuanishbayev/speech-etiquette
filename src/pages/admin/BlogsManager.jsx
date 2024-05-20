@@ -7,10 +7,11 @@ import { MdDelete, MdModeEdit } from 'react-icons/md';
 import DataNotFoundImg from '../../assets/data-not-found.jpg'
 import toast, { Toaster } from 'react-hot-toast';
 import { url } from '../../utils/Url';
+import useSWR from 'swr';
+import { fetcher } from '../../helpers/fetcher';
 
 
 const BlogsManager = () => {
-  const [data, setData]  = useState([]);
   const [currentPage, setCurrentPage] = useState(1);
   const [pageQty, setPageQty] = useState();
   const itemsPerPage = 3;
@@ -21,14 +22,7 @@ const BlogsManager = () => {
   const navigate = useNavigate()
   const [refreshData, setRefreshData] = useState(false)
 
-  useEffect(() => {
-    fetch(`${url}/api/blogs/active?per_page=1000`)
-    .then(res => res.json())
-    .then(json => {
-      setData(json.data.news)
-      setLoading(false)
-    });
-  }, [refreshData])
+  const {data, error, isLoading} = useSWR(`${url}/api/blogs/active`, fetcher)
   
   const handleSearch = (e) => {
     e.preventDefault()
@@ -37,7 +31,7 @@ const BlogsManager = () => {
   }
 
   useEffect(() => {
-    setPageQty(Math.ceil(data.filter(item => search === '' ? item : item.title.toLowerCase().includes(search)).length / itemsPerPage))
+    setPageQty(Math.ceil(Array.isArray(data) && data.filter(item => search === '' ? item : item.title.toLowerCase().includes(search)).length / itemsPerPage))
   }, [search, data]);
 
   const handleDelete = async (id) => {
@@ -76,37 +70,38 @@ const BlogsManager = () => {
           </Link>
         </div>
         <div className='flex flex-col lg:flex-row gap-4 lg:justify-between'>
-          {data.length !== 0 ? loading && (
-            Array(itemsPerPage).fill(0).map((item, index) => (
-              <div key={index} className='animate-pulse lg:w-[30%]'>
-                <div className="h-60 bg-gray-400"></div>
-                <div className='mt-4 flex flex-col gap-2 p-4'>
-                  <p className='h-6 mb-6 bg-gray-400 rounded-full'></p>
-                  <p className='h-4 bg-gray-400 rounded-full'></p>
-                  <p className='h-4 bg-gray-400 rounded-full'></p>
-                  <p className='h-4 bg-gray-400 rounded-full'></p>
-                  <p className='h-4 bg-gray-400 rounded-full'></p>
-                  <p className='h-4 bg-gray-400 rounded-full'></p>
-                  <p className='h-4 bg-gray-400 self-end w-1/2 rounded-full'></p>
-                </div>
-              </div>
-            ))
-          ) : <div className='text-center w-full text-red-600'>No information found in the database.</div>}
           {
-            data && data.filter(item => search === '' ? item : item.title.toLowerCase().includes(search)).slice(itemsPerPage * (currentPage - 1), currentPage * itemsPerPage).map((item, i) => (
-              <BlogCard key={i} image={item.image} title={item.title} body={item.body} uploadedDate={item.created_at}>
-                <div className="lg:hidden lg:group-hover/item:flex flex absolute top-2 md:top-4 lg:top-2 right-2 md:right-4 lg:right-2 gap-2 md:gap-4 lg:gap-2">
-                  <button className="bg-white p-2 rounded-md shadow-md" title='Edit' onClick={() => handleEdit(item.id)}>
-                    <MdModeEdit className='size-5 md:size-10 lg:size-fit' />
-                  </button>
-                  <button className="bg-white p-2 rounded-md shadow-md" onClick={() => handleDelete(item.id)}>
-                    <MdDelete className='size-5 md:size-10 lg:size-fit' />
-                  </button>
+            error ? <div className='text-center text-red-500 text-xl w-full'>Something went wrong.</div> : isLoading ? (
+              Array(itemsPerPage).fill(0).map((item, index) => (
+                <div key={index} className='animate-pulse lg:w-[30%]'>
+                  <div className="h-60 bg-gray-400"></div>
+                  <div className='mt-4 flex flex-col gap-2 p-4'>
+                    <p className='h-6 mb-6 bg-gray-400 rounded-full'></p>
+                    <p className='h-4 bg-gray-400 rounded-full'></p>
+                    <p className='h-4 bg-gray-400 rounded-full'></p>
+                    <p className='h-4 bg-gray-400 rounded-full'></p>
+                    <p className='h-4 bg-gray-400 rounded-full'></p>
+                    <p className='h-4 bg-gray-400 rounded-full'></p>
+                    <p className='h-4 bg-gray-400 self-end w-1/2 rounded-full'></p>
+                  </div>
                 </div>
-              </BlogCard>
-            ))
+              ))
+            ) : (
+              Array.isArray(data) && data.filter(item => search === '' ? item : item.title.toLowerCase().includes(search)).slice(itemsPerPage * (currentPage - 1), currentPage * itemsPerPage).map((item, i) => (
+                <BlogCard key={i} image={item.image} title={item.title} body={item.body} uploadedDate={item.created_at}>
+                  <div className="lg:hidden lg:group-hover/item:flex flex absolute top-2 md:top-4 lg:top-2 right-2 md:right-4 lg:right-2 gap-2 md:gap-4 lg:gap-2">
+                    <button className="bg-white p-2 rounded-md shadow-md" title='Edit' onClick={() => handleEdit(item.id)}>
+                      <MdModeEdit className='size-5 md:size-10 lg:size-fit' />
+                    </button>
+                    <button className="bg-white p-2 rounded-md shadow-md" onClick={() => handleDelete(item.id)}>
+                      <MdDelete className='size-5 md:size-10 lg:size-fit' />
+                    </button>
+                  </div>
+                </BlogCard>
+              ))
+            )
           }
-          {!loading && (data.filter(item => search === '' ? item : item.title.toLowerCase().includes(search)).length === 0 && <img src={DataNotFoundImg} alt="data-not-found" />)}
+          {!isLoading && (Array.isArray(data) && data.filter(item => search === '' ? item : item.title.toLowerCase().includes(search)).length === 0 && <img src={DataNotFoundImg} alt="data-not-found" />)}
         </div>
         <div className="flex justify-center pt-4 mb-20">
           <Pagination count={pageQty} onChange={(_, num) => setCurrentPage(num)} showFirstButton showLastButton />
