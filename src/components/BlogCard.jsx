@@ -6,7 +6,7 @@ const BlogCard = ({id, image, title, body, uploadedDate}) => {
   return (
     <div className="group/item">
       <Link to={`/post/${id}`}>
-        <div className="h-60">
+        <div className="h-min">
           <img className="h-full object-contain mx-auto" src={image} alt="thumbnail" />
         </div>
         <div className="content">
